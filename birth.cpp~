@@ -41,6 +41,6 @@ int main()
     with_ref (a);     // will this copy the value of `a`?
 
     A *aa = new A[5];
-    delete [] aa;        // what will happen?
+    delete aa;        // what will happen?
     return 0;
 }
