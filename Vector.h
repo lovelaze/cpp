@@ -5,15 +5,12 @@
 #include <stdexcept>
 #include <iostream>
 #include "VectorIterator.cpp"
-#include <vector>
 
 template <class T> class Vector {
 	
 	public:
-	// typedef T value_type;
-	// typedef typename std::vector<T>::size_type size_type;
-	typedef TIterator<T> iterator;
-	typedef TIterator<const T> const_iterator;
+	typedef VectorIterator<T> iterator;
+	typedef VectorIterator<const T> const_iterator;
 
 
 	//static_assert(std::is_move_constructible<T>::value, "type requires move constructable");

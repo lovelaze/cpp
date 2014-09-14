@@ -113,7 +113,7 @@ void Vector<T>::print() const {
 		std::cout << "{}" << std::endl;
 	} else {
 		std::cout << "{";
-		for (size_t i = 0; i < _size; ++i) {
+		for (size_t i = 0; i < _size - 1; ++i) {
 			std::cout << _arr[i] << " ";
 		}
 		std::cout << _arr[_size - 1] << "}" <<std::endl;
@@ -134,6 +134,7 @@ void Vector<T>::increase_capacity(std::size_t new_capacity) {
 	_arr = new_arr;
 }
 
+// iterators
 template <class T>
 typename Vector<T>::iterator Vector<T>::begin() {
 	return iterator(&_arr[0]);
@@ -146,11 +147,12 @@ typename Vector<T>::iterator Vector<T>::end() {
 
 template <class T>
 typename Vector<T>::iterator Vector<T>::find(const T & ref) {
-	/*for (auto it = Vector<T>::begin(); it != Vector<T>::end(); ++it) {
+	/*for (auto it = begin(); it != end(); ++it) {
 		if (ref == *it) {
-			return *it;
+			return iterator(it);
 		}
 	}
 
-	return Vector<T>::end();*/
+	return Vector<T>::end();
+	*/
 }

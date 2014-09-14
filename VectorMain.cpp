@@ -39,6 +39,6 @@ int main(int argc, char const *argv[])
 		cout << *it << " ";
 	}
 	cout << endl;
-	
+
 	return 0;
 }

@@ -3,30 +3,30 @@
 #include <iterator>
 
 template <class T>
-class TIterator : public std::iterator<std::random_access_iterator_tag, T>
+class VectorIterator : public std::iterator<std::random_access_iterator_tag, T>
 {
 
 T * ptr;
 
 public:
-	TIterator(T * p) : ptr(p) {}
-	TIterator(const TIterator & tit) : ptr(tit.ptr) {}
-	TIterator& operator++() {
+	VectorIterator(T * p) : ptr(p) {}
+	VectorIterator(const VectorIterator & tit) : ptr(tit.ptr) {}
+	VectorIterator& operator++() {
 		++ptr;
 		return *this;
 	}
 
-	TIterator operator++(int) {
-		TIterator tmp(*this);
+	VectorIterator operator++(int) {
+		VectorIterator tmp(*this);
 		operator++();
 		return tmp;
 	}
 
-	bool operator==(const TIterator & rhs) {
+	bool operator==(const VectorIterator & rhs) {
 		return ptr == rhs.ptr;
 	}
 
-	bool operator!=(const TIterator & rhs) {
+	bool operator!=(const VectorIterator & rhs) {
 		return ptr != rhs.ptr;
 	}
 
