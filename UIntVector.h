@@ -4,13 +4,15 @@
 #include <iostream>
 #include <cstddef>
 #include <initializer_list>
+#include <stdexcept>
 
 
 class UIntVector {
 
 private:
-	unsigned int * _arr;
 	std::size_t _size;
+	unsigned int * _arr;
+	
 
 public:
 	//constructors
@@ -23,9 +25,11 @@ public:
 	~UIntVector();
 
 	//operators
-	UIntVector& operator= (const UIntVector &);
-	unsigned int& operator[] (const int index);
+	UIntVector& operator= (const UIntVector&);
 	
+	unsigned int& operator[] (const std::size_t);
+	const unsigned int& operator[](const std::size_t) const;
+
 	//functions
 	std::size_t size() const;
 	void reset();
