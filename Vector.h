@@ -4,6 +4,7 @@
 #include <initializer_list>
 #include <stdexcept>
 #include <iostream>
+#include "VectorIterator.cpp"
 #include <vector>
 
 template <class T> class Vector {
@@ -11,8 +12,9 @@ template <class T> class Vector {
 	public:
 	// typedef T value_type;
 	// typedef typename std::vector<T>::size_type size_type;
-	typedef T* Iterator;
-	typedef const T* Const_Iterator;
+	typedef TIterator<T> iterator;
+	typedef TIterator<const T> const_iterator;
+
 
 	//static_assert(std::is_move_constructible<T>::value, "type requires move constructable");
 	//static_assert(std::is_move_assignable<T>::value, "type requires move assignable");
@@ -39,11 +41,12 @@ template <class T> class Vector {
 	std::size_t capacity() const;
 	void print() const ;
 
-	Iterator begin();
+	iterator begin();
+	iterator end();
+	iterator find(const T &);
 
-	Iterator end();
-
-	Iterator find(const T &);
+	const_iterator cbegin();
+	const_iterator cend();
 
 private:
 	std::size_t _size; // size of the vector

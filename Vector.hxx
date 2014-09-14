@@ -71,8 +71,9 @@ void Vector<T>::insert(std::size_t i, T e) {
 	if (i < 0 || i > _size) {
 		throw std::out_of_range("index of out range");
 	}
-	push_back(e);	// move all elements from index i one position to the right
+	push_back(e); // "make space" to move elements
 
+	// move all elements from index i one position to the right
 	for (int j = _size - 1; j > i; j--) {
 		_arr[j] = _arr[j - 1];
 	}
@@ -112,8 +113,8 @@ void Vector<T>::print() const {
 		std::cout << "{}" << std::endl;
 	} else {
 		std::cout << "{";
-		for (std::size_t i = 0; i < _size - 1; ++i) {
-			std::cout << _arr[i] << ", ";
+		for (size_t i = 0; i < _size; ++i) {
+			std::cout << _arr[i] << " ";
 		}
 		std::cout << _arr[_size - 1] << "}" <<std::endl;
 	}
@@ -134,16 +135,22 @@ void Vector<T>::increase_capacity(std::size_t new_capacity) {
 }
 
 template <class T>
-typename Vector<T>::Iterator Vector<T>::begin() {
-	return _arr[0];
+typename Vector<T>::iterator Vector<T>::begin() {
+	return iterator(&_arr[0]);
 }
 
 template <class T>
-typename Vector<T>::Iterator Vector<T>::end() {
-
+typename Vector<T>::iterator Vector<T>::end() {
+	return iterator(&_arr[_size]);
 }
 
 template <class T>
-typename Vector<T>::Iterator Vector<T>::find(const T &) {
+typename Vector<T>::iterator Vector<T>::find(const T & ref) {
+	/*for (auto it = Vector<T>::begin(); it != Vector<T>::end(); ++it) {
+		if (ref == *it) {
+			return *it;
+		}
+	}
 
+	return Vector<T>::end();*/
 }
