@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdexcept>
 #include "UIntVector.h"     // inkludera din headerfil här
+//#include "kth_cprog_simple_container.hpp"
+
+using namespace std;
 
 void printVector(UIntVector & v) {
     std::cout << "[";
@@ -11,9 +14,11 @@ void printVector(UIntVector & v) {
     std::cout << v[i] << "]" << std::endl;
 }
 
+
+
 int main()
 {
-
+    /*
     //Några saker som ska fungera:
     UIntVector a(7);           // initiering med 7 element
     UIntVector b(a);           // kopieringskonstruktor 
@@ -44,19 +49,32 @@ int main()
     b = b;                 // hmm: se till att inte minnet som skall behållas frigörs
 #endif
 
-    // test initalizer list
-    UIntVector v {1,2,3,4};
-    UIntVector v1(v);
-    std::cout << v.size() << std::endl;
-    std::cout << v1.size() << std::endl;
-    UIntVector v2;
-    printVector(v);
-    printVector(v1);
-    v1[2] = 13;
-    printVector(v);
-    printVector(v1);
-    std::cout << v2.size() << std::endl;
-    
-    
+    */
+
+    cout << endl;
+
+    UIntVector a {1,2,3,4};
+    UIntVector b(10);
+    cout << a.size() << endl;
+    UIntVector c(0);
+    c = a;
+    a = b;
+    UIntVector d = c;
+    cout << a.size() << endl;
+    cout << b.size() << endl;
+    cout << c.size() << endl;
+
+    a[1] = 10;
+    b[2] = 11;
+    c[3] = 12;
+
+    cout << a[1] << endl;
+    cout << b[2] << endl;
+    cout << c[3] << endl;
+
+    a.reset();
+    cout << a.size() << endl;
+
+    cout << endl;
     return 0;
 }

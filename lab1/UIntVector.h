@@ -6,33 +6,33 @@
 #include <initializer_list>
 #include <stdexcept>
 
-
 class UIntVector {
-	
+
 private:
-	std::size_t _size;
-	unsigned int * _arr;
+	std::size_t size_array;
+	unsigned int * array;
 
 public:
-	//constructors
+	// constructors
 	UIntVector();
-	UIntVector(std::size_t);
+	explicit UIntVector(std::size_t);
 	UIntVector(const UIntVector &);
-	UIntVector(std::initializer_list<unsigned int>);
+	explicit UIntVector(std::initializer_list<unsigned int>);
+	UIntVector(UIntVector && other);
 
-	//destructors
+
+	// destructor
 	~UIntVector();
 
-	//operators
-	UIntVector& operator= (const UIntVector&);
-	
-	unsigned int& operator[] (const std::size_t);
-	const unsigned int& operator[](const std::size_t) const;
+	// operators
+	unsigned int & operator[] (const std::size_t);
+	const unsigned int & operator[] (const std::size_t) const;
+	UIntVector & operator= (const UIntVector &);
+	UIntVector& operator= (UIntVector && other);
 
-	//functions
-	std::size_t size() const;
+	// methods
 	void reset();
-
+	std::size_t size() const;
 
 
 };
