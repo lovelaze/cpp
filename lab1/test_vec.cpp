@@ -2,6 +2,14 @@
 #include <stdexcept>
 #include "UIntVector.h"     // inkludera din headerfil här
 
+void printVector(UIntVector & v) {
+    std::cout << "[";
+    std::size_t i = 0;
+    for (i = 0; i < v.size() - 1; ++i) {
+        std::cout << v[i] << ", ";
+    }
+    std::cout << v[i] << "]" << std::endl;
+}
 
 int main()
 {
@@ -35,6 +43,19 @@ int main()
     //e[5] = 3;              // fel: (kompilerar ej) tilldelning till const
     b = b;                 // hmm: se till att inte minnet som skall behållas frigörs
 #endif
+
+    // test initalizer list
+    UIntVector v {1,2,3,4};
+    UIntVector v1(v);
+    std::cout << v.size() << std::endl;
+    std::cout << v1.size() << std::endl;
+    UIntVector v2;
+    printVector(v);
+    printVector(v1);
+    v1[2] = 13;
+    printVector(v);
+    printVector(v1);
+    std::cout << v2.size() << std::endl;
     
     
     return 0;

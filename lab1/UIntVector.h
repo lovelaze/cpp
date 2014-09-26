@@ -8,11 +8,10 @@
 
 
 class UIntVector {
-
+	
 private:
 	std::size_t _size;
 	unsigned int * _arr;
-	
 
 public:
 	//constructors
@@ -33,6 +32,8 @@ public:
 	//functions
 	std::size_t size() const;
 	void reset();
+
+
 
 };
 
