@@ -16,15 +16,6 @@ UIntVector::UIntVector(const UIntVector & src) : size_array(src.size_array), arr
 	}
 }
 
-UIntVector::UIntVector(UIntVector && other) : size_array(0), array(NULL) {
-	size_array = other.size_array;
-	array = other.array;
-
-	other.size_array = 0;
-	other.array = NULL;
-
-}
-
 UIntVector::UIntVector(std::initializer_list<unsigned int> args) : size_array(args.size()), array(new unsigned int[size_array]) {
 
 	// fill the array with elements from the initializer list
@@ -32,6 +23,15 @@ UIntVector::UIntVector(std::initializer_list<unsigned int> args) : size_array(ar
 	for (auto iter = args.begin(); iter != args.end(); ++iter) {
 		array[i++] = *iter;
 	}
+}
+
+UIntVector::UIntVector(UIntVector && other) : size_array(0), array(NULL) {
+	size_array = other.size_array;
+	array = other.array;
+
+	other.size_array = 0;
+	other.array = NULL;
+
 }
 
 // destructor

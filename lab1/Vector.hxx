@@ -1,13 +1,15 @@
 
-// constructors
+// default constructor
 template <class T>
 Vector<T>::Vector() : _size(0), _capacity(10) {
 	std::cout << "default constructor" << std::endl;
 	_arr = new T[_capacity];
 }
 
+// constructor : size
 template <class T>
 Vector<T>::Vector(std::size_t size) : _size(size), _capacity(size * 2) {
+	std::cout << "size constructor" << std::endl;
 	_arr = new T[_capacity];
 
 	for (int i = 0; i < _capacity; ++i){
@@ -15,9 +17,10 @@ Vector<T>::Vector(std::size_t size) : _size(size), _capacity(size * 2) {
 	}
 }
 
+// constructor : initalizer_list 
 template <class T>
 Vector<T>::Vector(std::initializer_list<T> args) : _size(args.size()), _capacity(args.size()*2) {
-
+	std::cout << "initalizer_list constructor" << std::endl;
 	_arr = new T[_capacity];
 	int i = 0;
 	for (auto iter = args.begin(); iter != args.end(); ++iter) {
@@ -26,23 +29,42 @@ Vector<T>::Vector(std::initializer_list<T> args) : _size(args.size()), _capacity
 	}
 }
 
+// constructor : size, init value
 template <class T>
 Vector<T>::Vector(std::size_t size, T init) : _size(size), _capacity(size * 2) {
+	std::cout << "size, init value constructor" << std::endl;
 	_arr = new T[_capacity];
 	for (int i = 0; i < _capacity; ++i) {
 		_arr[i] = init;
 	}
 }
 
+// copy constructor TODO
+template <class T>
+Vector<T>::Vector(const T & src) : _size(src._size), _capacity(src._capacity), _arr(new T[_capacity]) {
+	std::cout << "copy constructor" << std::endl;	
+	for (std::size_t i; i != src._size; ++i) {
+		_arr[i] = src._arr[i];
+	}
+}
+
+
+// move constructor TODO
+template <class T>
+Vector<T>::Vector(T && other) {
+	std::cout << "move constructor" << std::endl;
+}
+
 // destructor
 template <class T>
 Vector<T>::~Vector() {
-	delete[] _arr;
+	std::cout << "destructor" << std::endl;
+	//delete[] _arr;
 }
 
-// operators
+// subscript operator
 template <class T>
-T& Vector<T>::operator[] (const int index) {
+T& Vector<T>::operator[] (const std::size_t index) {
 
 	if (index < 0 || index >= _size) {
 		throw std::out_of_range("out of range");
@@ -50,6 +72,49 @@ T& Vector<T>::operator[] (const int index) {
 
 	return _arr[index];
 }
+
+// subscript operator
+template <class T>
+const T& Vector<T>::operator[] (const std::size_t index) const{
+
+	if (index < 0 || index >= _size) {
+		throw std::out_of_range("out of range");
+	}
+
+	return _arr[index];
+}
+
+// assignment
+template <class T>
+T& Vector<T>::operator= (const T & src) {
+	std::cout << "assignment" << std::endl;
+
+	if (&src != this) {
+
+		std::cout << "&src != this" << std::endl;
+		T * new_array = new T[src._capacity];
+		for (std::size_t i; i != src._size; ++i) {
+			new_array[i] = src._arr[i];
+		}
+
+		delete [] _arr;
+
+		_size = src._size;
+		_capacity = src._capacity;
+		_arr = new_array;
+
+	}
+
+	return *this;
+
+}
+
+template <class T>
+T& Vector<T>::operator= (T && other) {
+	std::cout << "move assignment" << std::endl;
+	
+}
+
 
 // functions
 template <class T>
@@ -110,13 +175,13 @@ std::size_t Vector<T>::capacity() const {
 template <class T>
 void Vector<T>::print() const {
 	if(_size == 0) {
-		std::cout << "{}" << std::endl;
+		std::cout << "{} : _size = " << _size << ", _capacity = " << _capacity << std::endl;
 	} else {
 		std::cout << "{";
 		for (size_t i = 0; i < _size - 1; ++i) {
-			std::cout << _arr[i] << " ";
+			std::cout << _arr[i] << ", ";
 		}
-		std::cout << _arr[_size - 1] << "}" <<std::endl;
+		std::cout << _arr[_size - 1] << "} : _size = " << _size << ", _capacity = " << _capacity << std::endl;
 	}
 }
 

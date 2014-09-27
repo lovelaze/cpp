@@ -7,6 +7,7 @@ does_it_fit:
 
 
 simple_container: UIntVector.cpp UIntVector.h test_vec.cpp
-	g++ -std=gnu++0x -Wall -g test_vec.cpp UIntVector.cpp -o test_vec.out
+	g++ -std=gnu++0x -Wall -g test_vec.cpp UIntVector.cpp -o test_vec.out 
 
 template_container:
+	g++	-std=gnu++0x -Wall -g test_template_vec.cpp -o VectorMain.out

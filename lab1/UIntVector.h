@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include <stdexcept>
 
+
 class UIntVector {
 
 private:
@@ -19,7 +20,6 @@ public:
 	UIntVector(const UIntVector &);
 	explicit UIntVector(std::initializer_list<unsigned int>);
 	UIntVector(UIntVector && other);
-
 
 	// destructor
 	~UIntVector();
@@ -38,3 +38,4 @@ public:
 };
 
 #endif
+

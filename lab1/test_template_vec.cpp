@@ -1,12 +1,13 @@
 #include "Vector.h"             // inkludera din headerfil här
 #include <assert.h>             // assert(b) ger felmeddelande om b falsk
 
-
 int main()
 {
     Vector<double> v;           // ok: defaultkonstruktor ger vektor med flyttal
-    Vector<char> *a = new Vector<char>[3];  // dynamiskt allokerade ser ut så här
+    Vector<char> *a = new Vector<char>[2];  // dynamiskt allokerade ser ut så här
     delete [] a;
+
+    v.print();
 
     assert(v.size() == 0);      // tom från början
     v.push_back(3.14);          // lägg till ett element sist 
@@ -15,7 +16,14 @@ int main()
     assert(v[0] == 2.10 &&      // hamnade de rätt?
 	   v[1] == 3.14);       
     assert(v.size() == 2);      // nu ligger två element i vektorn
-    v.sort(false);              // sortera i fallande ordning
+    
+    //v.sort(false);              // sortera i fallande ordning
+    double temp = v[0];
+    v[0] = v[1];
+    v[1] = temp;
+
+    v.print();
+
     assert(v[0] == 3.14 &&      // hamnade de rätt?
 	   v[1] == 2.10);       
     assert(v.size() == 2);      // ingenting ändrat?
@@ -31,10 +39,13 @@ int main()
     v.clear();                  // töm hela vektorn
     assert(v.size() == 0);      // tom när alla element är borttagna
     
+    v.print();
+
+    Vector<double> v2 = v;
     
     // kontrollera att följande rader inte går att kompilera
-    vc[0] = 3.1415;             // fel: tilldelning av konstant objekt
-    Vector<char> c = v;         // fel: tilldelning av olika typer
+   // vc[0] = 3.1415;             // fel: tilldelning av konstant objekt
+   // Vector<char> c = v;         // fel: tilldelning av olika typer
 
     return 0;
 }

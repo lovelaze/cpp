@@ -6,12 +6,12 @@
 #include <iostream>
 #include "VectorIterator.cpp"
 
-template <class T> class Vector {
+template <class T>
+class Vector {
 	
 	public:
 	typedef VectorIterator<T> iterator;
 	typedef VectorIterator<const T> const_iterator;
-
 
 	//static_assert(std::is_move_constructible<T>::value, "type requires move constructable");
 	//static_assert(std::is_move_assignable<T>::value, "type requires move assignable");
@@ -21,16 +21,17 @@ template <class T> class Vector {
 	Vector(std::size_t);
 	Vector(std::initializer_list<T>);
 	Vector(std::size_t, T);
-	Vector(const T &);
-	Vector(T && other);
+	Vector(const T &); // TODO
+	Vector(T &&); // TODO
 
 	// destructor
 	~Vector();
 
 	// operators
-	T& operator[] (const int index);
-	const T& operator[] (const int index) const;
-	T& operator= (T && other);
+	T& operator[] (const std::size_t index);
+	const T& operator[] (const std::size_t index) const;
+	T& operator= (const T & src); // TODO
+	T& operator= (T && other); // TODO
 
 
 	// functions
@@ -42,13 +43,14 @@ template <class T> class Vector {
 	void erase(std::size_t i);
 	std::size_t capacity() const;
 	void print() const ;
+	void sort();
 
-	iterator begin();
-	iterator end();
-	iterator find(const T &);
+	iterator begin(); // TODO
+	iterator end();	// TODO
+	iterator find(const T &); // TODO
 
-	const_iterator cbegin();
-	const_iterator cend();
+	const_iterator cbegin(); // TODO
+	const_iterator cend(); // TODO
 
 private:
 	std::size_t _size; // size of the vector
@@ -64,3 +66,7 @@ private:
 #include "Vector.hxx"
 
 #endif
+
+
+Vector<int> v;
+Vector<unsigned int> uv;

@@ -40,5 +40,9 @@ int main(int argc, char const *argv[])
 	}
 	cout << endl;
 
+	cout << v[2] << endl;
+
+	//Vector<unsigned int> v2(v);
+
 	return 0;
 }
