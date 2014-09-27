@@ -21,12 +21,17 @@ template <class T> class Vector {
 	Vector(std::size_t);
 	Vector(std::initializer_list<T>);
 	Vector(std::size_t, T);
+	Vector(const T &);
+	Vector(T && other);
 
 	// destructor
 	~Vector();
 
 	// operators
 	T& operator[] (const int index);
+	const T& operator[] (const int index) const;
+	T& operator= (T && other);
+
 
 	// functions
 	std::size_t size() const;

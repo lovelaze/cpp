@@ -18,7 +18,7 @@ void printVector(UIntVector & v) {
 
 int main()
 {
-    /*
+    
     //Några saker som ska fungera:
     UIntVector a(7);           // initiering med 7 element
     UIntVector b(a);           // kopieringskonstruktor 
@@ -49,32 +49,7 @@ int main()
     b = b;                 // hmm: se till att inte minnet som skall behållas frigörs
 #endif
 
-    */
+    
 
-    cout << endl;
-
-    UIntVector a {1,2,3,4};
-    UIntVector b(10);
-    cout << a.size() << endl;
-    UIntVector c(0);
-    c = a;
-    a = b;
-    UIntVector d = c;
-    cout << a.size() << endl;
-    cout << b.size() << endl;
-    cout << c.size() << endl;
-
-    a[1] = 10;
-    b[2] = 11;
-    c[3] = 12;
-
-    cout << a[1] << endl;
-    cout << b[2] << endl;
-    cout << c[3] << endl;
-
-    a.reset();
-    cout << a.size() << endl;
-
-    cout << endl;
     return 0;
 }
