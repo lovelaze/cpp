@@ -18,20 +18,20 @@ class Vector {
 
 	// constructors
 	Vector();
-	Vector(std::size_t);
+	explicit Vector(std::size_t);
 	Vector(std::initializer_list<T>);
 	Vector(std::size_t, T);
-	Vector(const T &); // TODO
-	Vector(T &&); // TODO
+	Vector(const Vector<T> &); // TODO
+	Vector(Vector<T> &&); // TODO
 
 	// destructor
-	~Vector();
+	virtual ~Vector();
 
 	// operators
 	T& operator[] (const std::size_t index);
 	const T& operator[] (const std::size_t index) const;
-	T& operator= (const T & src); // TODO
-	T& operator= (T && other); // TODO
+	Vector<T> & operator= (const Vector<T> & src); // TODO
+	Vector<T> & operator= (Vector<T> && other); // TODO
 
 
 	// functions
@@ -67,6 +67,3 @@ private:
 
 #endif
 
-
-Vector<int> v;
-Vector<unsigned int> uv;

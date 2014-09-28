@@ -1,15 +1,78 @@
 
+#include <initializer_list>
+#include <stdexcept>
+#include <iostream>
+#include "VectorIterator.cpp"
+
+template <class T>
+class Vector {
+	
+	public:
+	typedef VectorIterator<T> iterator;
+	typedef VectorIterator<const T> const_iterator;
+
+	//static_assert(std::is_move_constructible<T>::value, "type requires move constructable");
+	//static_assert(std::is_move_assignable<T>::value, "type requires move assignable");
+
+	// constructors
+	Vector();
+	Vector(std::size_t);
+	Vector(std::initializer_list<T>);
+	Vector(std::size_t, T);
+	Vector(const Vector<T> &); // TODO
+	Vector(Vector<T> &&); // TODO
+
+	// destructor
+	virtual ~Vector();
+
+	// operators
+	T& operator[] (const std::size_t index);
+	const T& operator[] (const std::size_t index) const;
+	Vector<T> & operator= (const T & src); // TODO
+	Vector<T> & operator= (T && other); // TODO
+
+
+	// functions
+	std::size_t size() const;
+
+	void push_back(T e);
+	void insert(std::size_t i, T e);
+	void clear();
+	void erase(std::size_t i);
+	std::size_t capacity() const;
+	void print() const ;
+	void sort();
+
+	iterator begin(); // TODO
+	iterator end();	// TODO
+	iterator find(const T &); // TODO
+
+	const_iterator cbegin(); // TODO
+	const_iterator cend(); // TODO
+
+private:
+	std::size_t _size; // size of the vector
+	std::size_t _capacity; // number of elements the vector can hold
+	T * _arr; // pointer to the first element of the vector
+
+	//functions
+	void increase_capacity(std::size_t new_capacity);
+		
+
+};
+
+
 // default constructor
 template <class T>
 Vector<T>::Vector() : _size(0), _capacity(10) {
-	std::cout << "default constructor" << std::endl;
+
 	_arr = new T[_capacity];
 }
 
 // constructor : size
 template <class T>
 Vector<T>::Vector(std::size_t size) : _size(size), _capacity(size * 2) {
-	std::cout << "size constructor" << std::endl;
+
 	_arr = new T[_capacity];
 
 	for (int i = 0; i < _capacity; ++i){
@@ -20,7 +83,6 @@ Vector<T>::Vector(std::size_t size) : _size(size), _capacity(size * 2) {
 // constructor : initalizer_list 
 template <class T>
 Vector<T>::Vector(std::initializer_list<T> args) : _size(args.size()), _capacity(args.size()*2) {
-	std::cout << "initalizer_list constructor" << std::endl;
 	_arr = new T[_capacity];
 	int i = 0;
 	for (auto iter = args.begin(); iter != args.end(); ++iter) {
@@ -32,7 +94,6 @@ Vector<T>::Vector(std::initializer_list<T> args) : _size(args.size()), _capacity
 // constructor : size, init value
 template <class T>
 Vector<T>::Vector(std::size_t size, T init) : _size(size), _capacity(size * 2) {
-	std::cout << "size, init value constructor" << std::endl;
 	_arr = new T[_capacity];
 	for (int i = 0; i < _capacity; ++i) {
 		_arr[i] = init;
@@ -42,27 +103,20 @@ Vector<T>::Vector(std::size_t size, T init) : _size(size), _capacity(size * 2) {
 // copy constructor TODO
 template <class T>
 Vector<T>::Vector(const Vector<T> & src) : _size(src._size), _capacity(src._capacity), _arr(new T[_capacity]) {
-	std::cout << "copy constructor" << std::endl;	
 	for (std::size_t i = 0; i != _size; ++i) {
 		_arr[i] = src._arr[i];
 	}
-
-	std::cout <<"_arr : " << _arr << std::endl;
-	std::cout <<"src._arr : " << src._arr << std::endl;
 }
 
 
 // move constructor TODO
 template <class T>
-Vector<T>::Vector(Vector<T> && other) {
-	std::cout << "move constructor" << std::endl;
+Vector<T>::Vector(T && other) {
 }
 
 // destructor
 template <class T>
 Vector<T>::~Vector() {
-	std::cout << "destructor" << std::endl;
-	std::cout << "DELETE : destructor: " <<  _arr << std::endl;
 	delete [] _arr;
 }
 
@@ -90,23 +144,21 @@ const T& Vector<T>::operator[] (const std::size_t index) const{
 
 // assignment
 template <class T>
-Vector<T> & Vector<T>::operator= (const Vector<T> & src) {
-	std::cout << "assignment" << std::endl;
+Vector<T> & Vector<T>::operator= (const T & src) {
 
 	if (&src != this) {
-		std::cout << "&src != this" << std::endl;
 
-		_size = src._size;
-		_capacity = src._capacity;
-		T * new_array = new T[_capacity];
-
-		for (std::size_t i = 0; i != _size; ++i) {
+	
+		T * new_array = new T[src._capacity];
+		for (std::size_t i; i != src._size; ++i) {
 			new_array[i] = src._arr[i];
 		}
 
-		std::cout << "DELETE : assignment: " <<  _arr << std::endl;
+	
 		delete [] _arr;
 
+		_size = src._size;
+		_capacity = src._capacity;
 		_arr = new_array;
 
 	}
@@ -116,18 +168,12 @@ Vector<T> & Vector<T>::operator= (const Vector<T> & src) {
 }
 
 template <class T>
-Vector<T> & Vector<T>::operator= (Vector<T> && other) {
-	std::cout << "move assignment" << std::endl;
-	if (&other != this) {
-		delete [] _arr;
-		_arr = other._arr;
-		_size = other._size;
+Vector<T> & Vector<T>::operator= (Vector<T && other) : _size(0), _arr(NULL){
+	_size = other._size;
+	arr = other._arr;
 
-		other._arr = NULL;
-		other._size = 0;
-	}
-
-	return *this;
+	other._size = 0;
+	other._arr = NULL;
 }
 
 
@@ -165,7 +211,7 @@ void Vector<T>::clear() {
 	_size = 0;
 	_capacity = 10;
 	T * new_arr = new T[_capacity];
-	std::cout << "DELETE : clear : " <<  _arr << std::endl;
+	
 	delete[] _arr;
 	_arr = new_arr;
 }
@@ -202,6 +248,7 @@ void Vector<T>::print() const {
 	}
 }
 
+
 template <class T>
 void Vector<T>::increase_capacity(std::size_t new_capacity) {
 	if (new_capacity <= _capacity) return;
@@ -213,7 +260,7 @@ void Vector<T>::increase_capacity(std::size_t new_capacity) {
 
 	_capacity = new_capacity;
 
-	std::cout << "DELETE : increase_capacity: " <<  _arr << std::endl;
+	
 	delete[] _arr;
 	_arr = new_arr;
 }

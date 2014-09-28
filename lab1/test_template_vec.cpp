@@ -1,5 +1,7 @@
-#include "Vector.h"             // inkludera din headerfil här
+//#include "Vector.h"             // inkludera din headerfil här
+#include "Vector.h"
 #include <assert.h>             // assert(b) ger felmeddelande om b falsk
+
 
 int main()
 {
@@ -42,6 +44,17 @@ int main()
     v.print();
 
     Vector<double> v2 = v;
+    assert(v.size() == 0);
+    assert(v2.size() == 0);
+
+    std::cout << "test" << std::endl;
+    Vector<double> v3;
+    
+    v3 = v2;
+    std::cout << "test" << std::endl;
+
+    
+
     
     // kontrollera att följande rader inte går att kompilera
    // vc[0] = 3.1415;             // fel: tilldelning av konstant objekt
