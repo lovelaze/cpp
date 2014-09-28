@@ -1,5 +1,5 @@
 //#include "Vector.h"             // inkludera din headerfil här
-#include "Vector.h"
+#include "kth_cprog_template_container.hpp"
 #include <assert.h>             // assert(b) ger felmeddelande om b falsk
 
 
@@ -47,15 +47,58 @@ int main()
     assert(v.size() == 0);
     assert(v2.size() == 0);
 
-    std::cout << "test" << std::endl;
+
     Vector<double> v3;
     
     v3 = v2;
-    std::cout << "test" << std::endl;
 
     
+    // test iterator
 
-    
+    Vector<double> v4 {1,2,34,5,6,7};
+    v4.print();
+
+    for (auto iter = v4.begin(); iter != v4.end(); ++iter) {
+        std::cout << *iter << ", ";
+    }
+    std::cout << std::endl;
+
+    auto d = v4.find(34);
+
+    std::cout << *d << std::endl;
+    *d = 17;
+    v4.print();
+
+
+    // test const iterator
+
+    const Vector<double> v5 {1,3,5,62,4};
+    for (auto iter = v5.begin(); iter != v5.end(); ++iter) {
+        std::cout << *iter << ", ";
+    }
+    std::cout << std::endl;
+
+    auto f = v5.find(4);
+    std::cout << *f << std::endl;
+
+    auto g  = v5.find(3);
+    std::cout <<  *g << std::endl;
+    g -= 1;
+    std::cout <<  *g << std::endl;
+    std::cout <<  (g > f) << std::endl;
+
+    Vector<char *> v6 {7,"hej"};
+    v6.print();
+    v6.clear();
+    v6.print();
+    v6.reset();
+    v6.print();
+
+
+
+
+    // *f = 3; //fel : tilldelning till const
+
     // kontrollera att följande rader inte går att kompilera
    // vc[0] = 3.1415;             // fel: tilldelning av konstant objekt
    // Vector<char> c = v;         // fel: tilldelning av olika typer
