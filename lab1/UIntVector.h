@@ -16,9 +16,9 @@ private:
 public:
 	// constructors
 	UIntVector();
-	explicit UIntVector(std::size_t);
+	explicit UIntVector(const std::size_t);
 	UIntVector(const UIntVector &);
-	explicit UIntVector(std::initializer_list<unsigned int>);
+	UIntVector(const std::initializer_list<unsigned int>);
 	UIntVector(UIntVector && other);
 
 	// destructor

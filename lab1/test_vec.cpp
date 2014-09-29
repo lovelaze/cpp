@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
-#include "UIntVector.h"     // inkludera din headerfil här
-//#include "kth_cprog_simple_container.hpp"
+//#include "UIntVector.h"     // inkludera din headerfil här
+#include "kth_cprog_simple_container.hpp"
 
 using namespace std;
 
@@ -50,6 +50,7 @@ int main()
     b = b;                 // hmm: se till att inte minnet som skall behållas frigörs
 #endif
 
+    // UIntVector v = 3; ska ej gå 
     
 
     return 0;

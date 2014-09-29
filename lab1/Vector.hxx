@@ -30,7 +30,7 @@ Vector<T>::Vector(const std::initializer_list<T> args) : _size(args.size()), _ca
 template <class T>
 Vector<T>::Vector(std::size_t size, T init) : _size(size), _capacity(size * 2) {
 	_arr = new T[_capacity];
-	for (int i = 0; i < _capacity; ++i) {
+	for (std::size_t i = 0; i < _capacity; ++i) {
 		_arr[i] = init;
 	}
 }
@@ -147,7 +147,7 @@ void Vector<T>::insert(const std::size_t i, const T e) {
 	push_back(e); // "make space" to move elements
 
 	// move all elements from index i one position to the right
-	for (int j = _size - 1; j > i; j--) {
+	for (std::size_t j = _size - 1; j > i; --j) {
 		_arr[j] = _arr[j - 1];
 	}
 	_arr[i] = e;
@@ -168,11 +168,11 @@ void Vector<T>::erase(const std::size_t i) {
 		throw std::out_of_range("index of out range");
 	}
 	
-	for (int j = i; j < _size; ++j) {
+	for (std::size_t j = i; j < _size; ++j) {
 		_arr[j] = _arr[j + 1];
 		
 	}
-	_size--;
+	--_size;
 
 }
 
@@ -196,10 +196,13 @@ void Vector<T>::print() const {
 
 template <class T>
 void Vector<T>::increase_capacity(std::size_t new_capacity) {
-	if (new_capacity <= _capacity) return;
+	if (new_capacity <= _capacity) {
+		throw std::range_error("Can't decrease the capacity");
+		return;
+	}
 
 	T * new_arr = new T[new_capacity];
-	for (int i = 0; i < _capacity; ++i) {
+	for (std::size_t i = 0; i < _capacity; ++i) {
 		new_arr[i] = _arr[i];
 	}
 

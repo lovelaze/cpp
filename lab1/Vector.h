@@ -27,8 +27,8 @@ class Vector {
 	// constructors
 	Vector();
 	explicit Vector(std::size_t);
-	Vector(const std::initializer_list<T>);
-	Vector(std::size_t, T);
+	explicit Vector(const std::initializer_list<T>);
+	explicit Vector(std::size_t, T);
 	Vector(const Vector<T> &); // TODO
 	Vector(Vector<T> &&); // TODO
 
@@ -67,7 +67,7 @@ class Vector {
 };
 
 
-//#include "Vector.hxx"
+#include "Vector.hxx"
 
 #endif
 

@@ -45,7 +45,7 @@ class MyTestSuite : public CxxTest::TestSuite {
 	}
 	
 	void test4() {
-		char const  data[4] = "bajs";
+		char const  data[5] = "bajs";
 		
       	int  const test_len = 4;
 

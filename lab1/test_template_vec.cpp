@@ -53,7 +53,7 @@ int main()
     v3 = v2;
 
     
-    // test iterator
+    // TEST ITERATORS
 
     Vector<double> v4 {1,2,34,5,6,7};
     v4.print();
@@ -69,33 +69,38 @@ int main()
     *d = 17;
     v4.print();
 
-
-    // test const iterator
-
-    const Vector<double> v5 {1,3,5,62,4};
+    const Vector<double> v5 {1,3,5,62,4,1,17,92,13};
     for (auto iter = v5.begin(); iter != v5.end(); ++iter) {
         std::cout << *iter << ", ";
     }
-    std::cout << std::endl;
 
-    auto f = v5.find(4);
-    std::cout << *f << std::endl;
+    std::cout << std::endl << std::endl;
+    v5.print();
+    auto f = v5.find(5);
+    std::cout << "*f = " << *f << std::endl;
 
-    auto g  = v5.find(3);
-    std::cout <<  *g << std::endl;
+    auto g  = v5.find(4);
+    std::cout <<  "*g = " << *g << std::endl;
     g -= 1;
-    std::cout <<  *g << std::endl;
-    std::cout <<  (g > f) << std::endl;
+    std::cout <<  "*g = " << *g << std::endl;
+    std::cout << "(g > f) = " << (g > f) << std::endl;
+    std::cout << "(g == f) = " << (g == f) << std::endl;
+    std::cout << "(g < f) = " << (g < f) << std::endl;
 
-    Vector<char *> v6 {7,"hej"};
-    v6.print();
-    v6.clear();
-    v6.print();
-    v6.reset();
-    v6.print();
+    v5.print();
+    std::cout << "test1" << std::endl;
+
+    std::cout << "(g-f) = " << (g-f) << std::endl;
+    std::cout << "v5[g-f] = " << v5[g-f] << std::endl;
+    std::cout << "test2" << std::endl;
+
+    //
 
 
-
+    std::size_t i = 2;
+    v5.print();
+    v5.erase(i);
+    v5.print();
 
     // *f = 3; //fel : tilldelning till const
 

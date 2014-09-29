@@ -3,82 +3,83 @@
 #include <iterator>
 
 template <class T>
-class VectorIterator : public std::iterator<std::random_access_iterator_tag, T> {
+class VectorIterator : public std::iterator<std::random_access_iterator_tag, T, std::ptrdiff_t, T*, T&> {
 
 private:
 	T * ptr;
 
 public:
-	typedef VectorIterator self_type;
+	typedef VectorIterator<T> self_type;
 	typedef T value_type;
 	typedef T& reference;
 	typedef T* pointer;
 	typedef std::random_access_iterator_tag iterator_category;
-	typedef int difference_type;
+	typedef std::ptrdiff_t difference_type;
 
-	VectorIterator(pointer ptr) : ptr(ptr) { }
+	VectorIterator(pointer ptr = nullptr) : ptr(ptr) { }
+
+	
 
 	self_type operator++() {
 		self_type i = *this;
-		ptr++;
+		++ptr;
 		return i;
 	}
 	self_type operator++(int yolo) {
-		ptr++;
+		++ptr;
 		return *this;
 	}
 
 	self_type operator--() {
 		self_type i = *this;
-		ptr--;
+		--ptr;
 		return i;
 	}
-	self_type operator--(int yolo) {
-		ptr--;
+	self_type & operator--(int yolo) {
+		--ptr;
 		return *this;
 	}
 
 
-	self_type operator+(const std::size_t i) {
+	self_type & operator+(const difference_type i) {
 		ptr += i;
 		return *this;
 	}
 
-	self_type operator+=(const std::size_t i) {
+	self_type & operator+=(const difference_type i) {
 		ptr += i;
 		return *this;
 	}
 
-	self_type operator-(const std::size_t i) {
+	self_type & operator-=(const difference_type i) {
 		ptr -= i;
 		return *this;
 	}
 
-	self_type operator-=(const std::size_t i) {
-		ptr -= i;
-		return *this;
+	self_type operator-(const difference_type & diff){
+		pointer oldPtr = ptr;
+		ptr -= diff;
+		pointer temp(*this);
+		ptr = oldPtr;
+		return temp;
 	}
 
-	// NOT WORKING
-	/*
-	self_type operator-(const self_type & rhs) {
-		std::cout << "ptr = " << ptr << std::endl;
-		std::cout << "rhs.ptr = " << rhs.ptr << std::endl;
-		//ptr= ptr - rhs.ptr;
-		return *this;
-	}*/
+	difference_type operator-(const self_type & rhs){
+		return std::distance(rhs.ptr, ptr);
+	}
+
+
 
 
 	reference operator*() {
 		return *ptr;
 	}
+	const reference operator*() const {
+		return *ptr;
+	}
 
 	pointer operator->() {
 		return ptr;
-	}
-
-	const reference operator*() const {
-		return *ptr;
 	}
 
 	const pointer operator->() const {

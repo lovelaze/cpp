@@ -5,7 +5,7 @@ UIntVector::UIntVector() : size_array(0), array(new unsigned int[size_array]) {
 
 }
 
-UIntVector::UIntVector(std::size_t size) : size_array(size), array(new unsigned int[size_array]) {
+UIntVector::UIntVector(const std::size_t size) : size_array(size), array(new unsigned int[size_array]) {
 	reset(); // set all elements to 0
 }
 
@@ -16,7 +16,7 @@ UIntVector::UIntVector(const UIntVector & src) : size_array(src.size_array), arr
 	}
 }
 
-UIntVector::UIntVector(std::initializer_list<unsigned int> args) : size_array(args.size()), array(new unsigned int[size_array]) {
+UIntVector::UIntVector(const std::initializer_list<unsigned int> args) : size_array(args.size()), array(new unsigned int[size_array]) {
 
 	// fill the array with elements from the initializer list
 	int i = 0;
