@@ -40,8 +40,6 @@ int main()
     assert(v.size() == 1);      // rätt antal elelment
     v.clear();                  // töm hela vektorn
     assert(v.size() == 0);      // tom när alla element är borttagna
-    
-    v.print();
 
     Vector<double> v2 = v;
     assert(v.size() == 0);
@@ -63,18 +61,21 @@ int main()
     }
     std::cout << std::endl;
 
+    
     auto d = v4.find(34);
-
+    
     std::cout << *d << std::endl;
     *d = 17;
     v4.print();
+
 
     const Vector<double> v5 {1,3,5,62,4,1,17,92,13};
     for (auto iter = v5.begin(); iter != v5.end(); ++iter) {
         std::cout << *iter << ", ";
     }
 
-    std::cout << std::endl << std::endl;
+
+    std::cout << std::endl;
     v5.print();
     auto f = v5.find(5);
     std::cout << "*f = " << *f << std::endl;
@@ -88,19 +89,30 @@ int main()
     std::cout << "(g < f) = " << (g < f) << std::endl;
 
     v5.print();
-    std::cout << "test1" << std::endl;
 
     std::cout << "(g-f) = " << (g-f) << std::endl;
     std::cout << "v5[g-f] = " << v5[g-f] << std::endl;
-    std::cout << "test2" << std::endl;
 
     //
 
+     Vector<int> v6 {1,2,3,4,5,6};
 
-    std::size_t i = 2;
-    v5.print();
-    v5.erase(i);
-    v5.print();
+    auto v6b = v6.begin();
+    auto v6e = v6.end();
+
+    auto res = v6b-v6e;
+    std::cout << res << std::endl;
+    res = v6e-v6b;
+    std::cout << res << std::endl;
+    std::cout << (res-res) << std::endl;
+
+    v6.print();
+    v6.reset();
+    v6.print();
+    v6.insert(0,123);
+    v6.print();
+
+/*
 
     // *f = 3; //fel : tilldelning till const
 
@@ -108,5 +120,6 @@ int main()
    // vc[0] = 3.1415;             // fel: tilldelning av konstant objekt
    // Vector<char> c = v;         // fel: tilldelning av olika typer
 
+    */
     return 0;
 }

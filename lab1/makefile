@@ -8,6 +8,14 @@ does_it_fit:
 
 simple_container: UIntVector.cpp UIntVector.h test_vec.cpp
 	g++ -std=gnu++0x -Wall -g test_vec.cpp UIntVector.cpp -o test_vec.out 
+simple_container_clang:
+	clang++-3.5 -Wall -g -std=gnu++11 test_vec.cpp UIntVector.cpp -o test_vec.out
 
 template_container:
 	g++	-std=gnu++0x -Wall -g test_template_vec.cpp -o VectorMain.out
+
+template_container_clang:
+	clang++-3.5 -std=gnu++0x -Wall -g test_template_vec.cpp -o VectorMain.out
+
+template_container_kattis_test:
+	clang++-3.5 -std=gnu++0x -Wall -g test_template_kattis.cpp -o VectorKattisTest.out

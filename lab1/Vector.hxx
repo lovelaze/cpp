@@ -132,6 +132,12 @@ std::size_t Vector<T>::size() const {
 
 template <class T>
 void Vector<T>::push_back(const T e) {
+	if (_capacity == 0 && _size == 0) {
+		increase_capacity(20);
+	}
+	if (_capacity == 0 && _size != 0) {
+		increase_capacity(_size*2);
+	}
 	if (_size >= _capacity) {
 		increase_capacity(2 * _capacity);
 	}
@@ -144,7 +150,7 @@ void Vector<T>::insert(const std::size_t i, const T e) {
 	if (i < 0 || i > _size) {
 		throw std::out_of_range("index of out range");
 	}
-	push_back(e); // "make space" to move elements
+	push_back(T()); // "make space" to move elements
 
 	// move all elements from index i one position to the right
 	for (std::size_t j = _size - 1; j > i; --j) {
@@ -156,7 +162,6 @@ void Vector<T>::insert(const std::size_t i, const T e) {
 template <class T>
 void Vector<T>::clear() {
 	_size = 0;
-	_capacity = 10;
 	T * new_arr = new T[_capacity];
 	delete[] _arr;
 	_arr = new_arr;
@@ -187,8 +192,13 @@ void Vector<T>::print() const {
 		std::cout << "{} : _size = " << _size << ", _capacity = " << _capacity << std::endl;
 	} else {
 		std::cout << "{";
-		for (size_t i = 0; i < _size - 1; ++i) {
-			std::cout << _arr[i] << ", ";
+		for (size_t i = 0; i < _capacity - 1; ++i) {
+			if ( i == _size-1) {
+				std::cout << _arr[i] << " | ";
+			} else {
+				std::cout << _arr[i] << ", ";	
+			}
+			
 		}
 		std::cout << _arr[_size - 1] << "} : _size = " << _size << ", _capacity = " << _capacity << std::endl;
 	}
@@ -202,7 +212,7 @@ void Vector<T>::increase_capacity(std::size_t new_capacity) {
 	}
 
 	T * new_arr = new T[new_capacity];
-	for (std::size_t i = 0; i < _capacity; ++i) {
+	for (std::size_t i = 0; i < _size; ++i) {
 		new_arr[i] = _arr[i];
 	}
 
@@ -220,6 +230,7 @@ void Vector<T>::reset() {
 }
 
 // iterators
+/*
 template <class T>
 typename Vector<T>::iterator Vector<T>::begin() {
 	return iterator(_arr);
@@ -261,4 +272,48 @@ typename Vector<T>::const_iterator Vector<T>::find(const T & ref) const {
 	}
 
 	return end();	
+}*/
+
+template <class T>
+typename Vector<T>::iterator Vector<T>::begin() {
+
+	return _arr;
+}
+
+template <class T>
+typename Vector<T>::iterator Vector<T>::end() {
+	return _arr+_size;
+}
+
+template <class T>
+typename Vector<T>::iterator Vector<T>::find(const T & ref) {
+	for (auto it = begin(); it != end(); ++it) {
+		if (ref == *it) {
+			return it;
+		}
+	}
+
+	return end();
+}
+
+template <class T>
+typename Vector<T>::const_iterator Vector<T>::begin() const {
+
+	return _arr;
+}
+
+template <class T>
+typename Vector<T>::const_iterator Vector<T>::end() const {
+	return _arr+_size;
+}
+
+template <class T>
+typename Vector<T>::const_iterator Vector<T>::find(const T & ref) const {
+	for (auto it = begin(); it != end(); ++it) {
+		if (ref == *it) {
+			return it;
+		}
+	}
+
+	return end();
 }

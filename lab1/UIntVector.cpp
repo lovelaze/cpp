@@ -25,12 +25,9 @@ UIntVector::UIntVector(const std::initializer_list<unsigned int> args) : size_ar
 	}
 }
 
-UIntVector::UIntVector(UIntVector && other) : size_array(0), array(NULL) {
-	size_array = other.size_array;
-	array = other.array;
-
+UIntVector::UIntVector(UIntVector && other) : size_array(other.size_array), array(other.array) {
 	other.size_array = 0;
-	other.array = NULL;
+	other.array = nullptr;
 
 }
 
@@ -81,7 +78,7 @@ UIntVector& UIntVector::operator= (UIntVector && other) {
 		array = other.array;
 		size_array = other.size_array;
 
-		other.array = NULL;
+		other.array = nullptr;
 		other.size_array = 0;
 	}
 

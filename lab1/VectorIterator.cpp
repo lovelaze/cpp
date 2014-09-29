@@ -5,10 +5,6 @@
 template <class T>
 class VectorIterator : public std::iterator<std::random_access_iterator_tag, T, std::ptrdiff_t, T*, T&> {
 
-private:
-	T * ptr;
-
-public:
 	typedef VectorIterator<T> self_type;
 	typedef T value_type;
 	typedef T& reference;
@@ -16,7 +12,13 @@ public:
 	typedef std::random_access_iterator_tag iterator_category;
 	typedef std::ptrdiff_t difference_type;
 
+private:
+	pointer ptr;
+
+public:
 	VectorIterator(pointer ptr = nullptr) : ptr(ptr) { }
+	VectorIterator(const self_type & src) = default;
+	~VectorIterator() { }
 
 	
 
@@ -57,14 +59,16 @@ public:
 	}
 
 	self_type operator-(const difference_type & diff){
-		pointer oldPtr = ptr;
+		std::cerr << "operator-(const difference_type & diff)" << std::endl;
+		auto oldPtr = ptr;
 		ptr -= diff;
-		pointer temp(*this);
+		auto temp(*this);
 		ptr = oldPtr;
 		return temp;
 	}
 
 	difference_type operator-(const self_type & rhs){
+		std::cerr << "operator-(const self_type & rhs)" << std::endl;
 		return std::distance(rhs.ptr, ptr);
 	}
 
