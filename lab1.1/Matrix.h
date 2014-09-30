@@ -3,7 +3,7 @@
 //#include <vector>
 #include <iostream>
 #include <stdexcept>
-#include "Vector.h"
+#include "../lab1/Vector.h"
 
 template <class T>
 class Vec : Vector< T > {
