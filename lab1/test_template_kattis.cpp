@@ -98,5 +98,7 @@ int main()
     *v3.begin() = 3;
 
 
+     std::cout << "int: " << std::is_move_assignable<int>::value << std::endl;
+
     return 0;
 }

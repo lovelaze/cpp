@@ -37,7 +37,7 @@ public:
 	Vector(Vector<T> &&);
 
 	// destructor
-	virtual ~Vector();
+	~Vector();
 
 	// operators
 	T& operator[] (const std::size_t index);

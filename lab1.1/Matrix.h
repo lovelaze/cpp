@@ -1,13 +1,14 @@
 #ifndef MATRIX_H
 #define MATRIX_H
-#include <vector>
+//#include <vector>
 #include <iostream>
 #include <stdexcept>
+#include "Vector.h"
 
 template <class T>
-class Vector : public std::vector< T > {
+class Vec : Vector< T > {
 public:
-    explicit Vector <T> (std::size_t size  = 0, T data = T()) : std::vector<T>(size, data) {}
+    explicit Vec <T> (std::size_t size  = 0, T data = T()) : Vector< T >(size, data) {}
     const T& operator[](unsigned int i) const throw(std::out_of_range) {
         return this->at( i );
     }
