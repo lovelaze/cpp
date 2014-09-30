@@ -2,6 +2,7 @@
 #include "kth_cprog_template_container.hpp"
 #include <assert.h>             // assert(b) ger felmeddelande om b falsk
 
+
 using namespace std;
     
 int main()
@@ -74,6 +75,27 @@ int main()
     b.clear();
     assert(b._capacity > 3);
     assert(b.size() == 0);
+
+
+    Vector<int> v (2, 5);
+    cout << v._capacity << endl;
+    v.push_back(5);
+    v.push_back(5);
+    v.push_back(5);
+    cout << v._capacity << endl;
+    v.print();
+
+
+    const Vector<int> v2 {1,2,3};
+
+    auto beg = v2.begin();
+
+    cout << beg << endl;
+    //*beg = 5;
+
+
+    Vector<int> v3 {1,2,3};
+    *v3.begin() = 3;
 
 
     return 0;

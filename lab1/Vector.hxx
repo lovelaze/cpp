@@ -18,6 +18,7 @@ Vector<T>::Vector(std::size_t size) : _size(size), _capacity(size * 2) {
 // constructor : initalizer_list 
 template <class T>
 Vector<T>::Vector(const std::initializer_list<T> args) : _size(args.size()), _capacity(args.size()*2) {
+
 	_arr = new T[_capacity];
 	int i = 0;
 	for (auto iter = args.begin(); iter != args.end(); ++iter) {
@@ -28,7 +29,7 @@ Vector<T>::Vector(const std::initializer_list<T> args) : _size(args.size()), _ca
 
 // constructor : size, init value
 template <class T>
-Vector<T>::Vector(std::size_t size, T init) : _size(size), _capacity(size * 2) {
+Vector<T>::Vector(const std::size_t size, const T init) : _size(size), _capacity(size * 2) {
 	_arr = new T[_capacity];
 	for (std::size_t i = 0; i < _capacity; ++i) {
 		_arr[i] = init;
@@ -276,7 +277,6 @@ typename Vector<T>::const_iterator Vector<T>::find(const T & ref) const {
 
 template <class T>
 typename Vector<T>::iterator Vector<T>::begin() {
-
 	return _arr;
 }
 

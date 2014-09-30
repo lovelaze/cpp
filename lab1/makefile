@@ -1,4 +1,4 @@
-all: template_container
+all: template_container_kattis_test
 	
 does_it_fit:
 	/info/DD2387/labs/cxxtest/cxxtestgen.py --error-printer -o simple_testrunner.cpp simple.cxxtest.cpp
@@ -18,4 +18,4 @@ template_container_clang:
 	clang++-3.5 -std=gnu++0x -Wall -g test_template_vec.cpp -o VectorMain.out
 
 template_container_kattis_test:
-	clang++-3.5 -std=gnu++0x -Wall -g test_template_kattis.cpp -o VectorKattisTest.out
+	g++ -std=gnu++0x -Wall -g test_template_kattis.cpp -o VectorKattisTest.out

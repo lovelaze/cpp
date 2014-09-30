@@ -4,14 +4,16 @@
 #include <initializer_list>
 #include <stdexcept>
 #include <iostream>
+#include <type_traits>
 //#include "VectorIterator.cpp"
 
 #define private public
+using namespace std;
 
 template <class T>
 class Vector {
-	
-	private:
+
+private:
 	std::size_t _size; // size of the vector
 	std::size_t _capacity; // number of elements the vector can hold
 	T * _arr; // pointer to the first element of the vector
@@ -19,10 +21,7 @@ class Vector {
 	//functions
 	void increase_capacity(std::size_t new_capacity);
 	
-	public:
-	//typedef VectorIterator<T> iterator;
-	//typedef VectorIterator<const T> const_iterator;
-
+public:
 	typedef T* iterator;
 	typedef const T* const_iterator;
 
@@ -33,9 +32,9 @@ class Vector {
 	Vector();
 	explicit Vector(std::size_t);
 	Vector(const std::initializer_list<T>);
-	Vector(std::size_t, T);
-	Vector(const Vector<T> &); // TODO
-	Vector(Vector<T> &&); // TODO
+	Vector(const std::size_t, const T);
+	Vector(const Vector<T> &);
+	Vector(Vector<T> &&);
 
 	// destructor
 	~Vector();
@@ -65,17 +64,6 @@ class Vector {
 	const_iterator begin() const;
 	const_iterator end() const;
 	const_iterator find(const T &) const;
-
-	/* // iterators
-	iterator begin(); // TODO
-	iterator end();	// TODO
-	iterator find(const T &); // TODO
-	const_iterator begin() const; // TODO
-	const_iterator end() const; // TODO
-	const_iterator find(const T &) const; // TODO */
-
-	//const_iterator cbegin(); // TODO
-	//const_iterator cend(); // TODO
 
 };
 

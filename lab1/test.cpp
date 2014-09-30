@@ -1,25 +1,11 @@
 #include <iostream>
 #include <string>
-
-class Test {
-
-private:
-	int a;
-public:
-	Test();
-	Test(int a);
-
-	void printA() {
-		std::cout << a << std::endl;
-	};
-};
+#include <type_traits>
 
 
 int main() {
 
-	Test t;
+	std::cout << std::is_move_assignable<int>::value << std::cout;
 
-	t.printA();
-
-
+	return 0;
 }
