@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <cctype>
+#include <cstdlib>
 
 void Matrix::print() {
 
@@ -28,7 +30,7 @@ Matrix::~Matrix() {
 /*
 	SIZE INIT
 */
-Matrix::Matrix( std::size_t rows, std::size_t cols) : m_rows(rows), m_cols(cols), m_vectors(Vector<matrix_row>(rows, matrix_row(cols))) {
+Matrix::Matrix( const std::size_t rows, const std::size_t cols) : m_rows(rows), m_cols(cols), m_vectors(Vector<matrix_row>(rows, matrix_row(cols))) {
 
 	std::cerr << "size constructor" << std::endl;
 	/*
@@ -50,7 +52,7 @@ Matrix::Matrix( const Matrix&& ) {
 }
 
 
-Matrix::Matrix(std::size_t size) : Matrix(size, size) {
+Matrix::Matrix(const std::size_t size) : Matrix(size, size) {
 	for (index i = 0; i < size; ++i) {
 		m_vectors[i][i] = 1;
 	}
@@ -110,16 +112,21 @@ Matrix& Matrix::transpose( ) {
 
 */
 
-void Matrix::add_row() {
+void Matrix::add_row(matrix_row & row) {
+	if (row.size() != m_cols) {
+		throw std::invalid_argument("the row must have correct dimension");
+	}
+	m_vectors.push_back(row);
+	++m_rows;
 
 }
 
-Matrix::matrix_row& Matrix::operator[]( index i ) {
+Matrix::matrix_row& Matrix::operator[]( const index i ) {
 	// TODO errors?
 	return m_vectors[i];
 }
 
-const Matrix::matrix_row& Matrix::operator[]( index i ) const {
+const Matrix::matrix_row& Matrix::operator[]( const index i ) const {
 	// TODO errors?
 	return m_vectors[i];
 }
@@ -132,9 +139,21 @@ std::istream& operator>> ( std::istream& is, Matrix& matrix) {
 	input.erase(0, 1);
 	input.erase(input.length()-1, input.length());
 
-	input.erase( std::remove(input.begin(), input.end(), ' '), input.end() );
+	Matrix::matrix_row temp_row;
 
-	cout << input << endl;
+	for (char & c : input) {
+		if (isdigit(c)) {
+			temp_row.push_back(std::atoi(&c));
+		}
+
+		if (c == ';') {
+			matrix.add_row(temp_row);
+			temp_row.clear();
+		}
+	}
+
+
+	cerr << input << endl;
 
 	
 	return is;

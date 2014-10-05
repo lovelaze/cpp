@@ -21,10 +21,15 @@ int main() {
 	Matrix p (5);
 	p.print();
 
+
 	cout << endl;
 	p.print();
 
-	std::cin >> p;
+	
+	Matrix x;
+
+	std::cin >> x;
+	x.print();
 
 
 	return 0;
