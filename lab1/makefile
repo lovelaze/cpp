@@ -1,5 +1,5 @@
 #cxxpath = /info/DD2387/labs/cxxtest/cxxtestgen.py
-CXX = g++
+CXX = clang++-3.5
 CXXFLAGS = -Wall -g -std=gnu++0x
 cxxpath = cxxtestgen
 
@@ -29,7 +29,7 @@ template_container_kattis_test:
 	$(CXX) $(CXXFLAGS) test_template_kattis.cpp -o VectorKattisTest.out
 
 matrix:
-	$(CXX) $(CXXFLAGS) matrix_test.cpp -o matrix_test.out
+	$(CXX) $(CXXFLAGS) 1.1/matrix_test.cpp 1.1/matrix.cpp -o 1.1/matrix_test.out
 
 
 clean:
