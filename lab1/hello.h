@@ -1,6 +1,9 @@
 #ifndef HELLO_H
 #define HELLO_H
 
-void printHello(std::string s);
+#include <iostream>
+#include <string>
+
+void printHello(std::string);
 
 #endif
