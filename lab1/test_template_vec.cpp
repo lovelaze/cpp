@@ -1,5 +1,6 @@
 //#include "Vector.h"             // inkludera din headerfil här
-#include "kth_cprog_template_container.hpp"
+#include "mark_vector.h"
+//#include "kth_cprog_template_container.hpp"
 #include <assert.h>             // assert(b) ger felmeddelande om b falsk
 
 
@@ -110,6 +111,8 @@ int main()
     v6.reset();
     v6.print();
     v6.insert(0,123);
+    v6.push_back(3);
+    v6.push_back(3);
     v6.print();
 
 /*

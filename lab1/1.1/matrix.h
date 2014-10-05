@@ -3,7 +3,7 @@
 //#include <vector>
 #include <iostream>
 #include <stdexcept>
-#include "../lab1/Vector.h"
+#include "../Vector.h"
 
 template <class T>
 class Vec : Vector< T > {
@@ -19,16 +19,16 @@ public:
 
 //using namespace std;
 
-class Matrix
-{
+template <class T>
+class Matrix {
  public:
-    typedef unsigned int index;
+    //typedef unsigned int index;
     
-    class matrix_row : private Vector< int >
+    class matrix_row : private Vector< T >
     {
     public:
-        matrix_row( std::size_t s = 0) : Vector< int >( s ) {}
-        using Vector<int>::operator [];
+        matrix_row( std::size_t s = 0) : Vector< T >( s ) {}
+        using Vector<T>::operator [];
     private:
         friend std::istream& operator>>( std::istream&, Matrix& );
     };
@@ -48,8 +48,8 @@ class Matrix
     
     Matrix& transpose( );
     
-    matrix_row& operator[]( index i );
-    const matrix_row& operator[]( index i ) const;
+    matrix_row& operator[]( unsigned int i );
+    const matrix_row& operator[]( unsigned int i ) const;
     
     std::size_t rows() const;
     std::size_t cols() const;
@@ -64,8 +64,17 @@ class Matrix
     friend std::istream& operator>> ( std::istream&, Matrix& );
 };
 
-std::istream& operator>> ( std::istream&, Matrix& );
-std::ostream& operator<< ( std::ostream&, Matrix& );
-Matrix operator* ( int, const Matrix& );
+#include "matrix.hxx"
+
+template <class T>
+std::istream& operator>> ( std::istream&, Matrix<T>& );
+template <class T>
+std::ostream& operator<< ( std::ostream&, Matrix<T>& );
+template <class T>
+Matrix<T> operator* ( int, const Matrix<T>& );
+
+
+
+
 
 #endif // MATRIX_H

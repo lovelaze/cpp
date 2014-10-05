@@ -42,7 +42,6 @@ Vector<T>::Vector(const Vector<T> & src) : _size(src._size), _capacity(src._capa
 	for (std::size_t i = 0; i != _size; ++i) {
 		_arr[i] = src._arr[i];
 	}
-
 }
 
 
