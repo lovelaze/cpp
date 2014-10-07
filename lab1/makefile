@@ -23,7 +23,7 @@ will_it_float:
 	$(CXX) $(CXXFLAGS) bad_plumming.cpp -o bad_plumming.out
 
 simple_container: UIntVector.cpp UIntVector.h test_vec.cpp
-	$(CXX) $(CXXFLAGS) test_vec.cpp UIntVector.cpp -o test_vec.out 
+	$(CXX) $(CXXFLAGS) test_vec.cpp -o test_vec.out 
 
 template_container:
 	$(CXX) $(CXXFLAGS) test_template_vec.cpp -o VectorMain.out
