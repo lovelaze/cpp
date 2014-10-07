@@ -5,18 +5,19 @@
 #include <stdexcept>
 #include <iostream>
 #include <type_traits>
-//#include "VectorIterator.cpp"
 
 #define private public
 using namespace std;
 
 template <class T>
 class Vector {
+	static_assert(std::is_move_constructible<T>::value,  "Type must be move_constructible");
+	static_assert(std::is_move_assignable<T>::value,  "Type must be move_assignable");
 
 private:
-	std::size_t _size; // size of the vector
-	std::size_t _capacity; // number of elements the vector can hold
-	T * _arr; // pointer to the first element of the vector
+	std::size_t size_array; // size of the vector
+	std::size_t cap_array; // number of elements the vector can hold
+	T * array; // pointer to the first element of the vector
 
 	//functions
 	void increase_capacity(std::size_t new_capacity);
@@ -24,9 +25,6 @@ private:
 public:
 	typedef T* iterator;
 	typedef const T* const_iterator;
-
-	//static_assert(std::is_move_constructible<T>::value, "type requires move constructable");
-	//static_assert(std::is_move_assignable<T>::value, "type requires move assignable");
 
 	// constructors
 	Vector();
@@ -37,7 +35,7 @@ public:
 	Vector(Vector<T> &&);
 
 	// destructor
-	virtual ~Vector();
+	~Vector();
 
 	// operators
 	T& operator[] (const std::size_t index);

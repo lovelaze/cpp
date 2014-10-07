@@ -24,8 +24,12 @@ public:
    }
 };
 
-void no_ref(A a) {}
-void with_ref(const A & a) {}
+void no_ref(A a) {
+
+}
+void with_ref(const A & a) {
+
+}
 
 int main()
 {
@@ -40,7 +44,8 @@ int main()
       no_ref (a);     // will this copy the value of `a`?
     with_ref (a);     // will this copy the value of `a`?
 
-    A *aa = new A[5];
+    A* aa = new A[5];
     delete [] aa;        // what will happen?
     return 0;
+
 }

@@ -115,6 +115,12 @@ int main()
     v6.push_back(3);
     v6.print();
 
+
+    for (int & v : v6) {
+        std::cout << v << std::endl;
+    }
+
+
 /*
 
     // *f = 3; //fel : tilldelning till const
