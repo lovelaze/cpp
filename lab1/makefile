@@ -3,6 +3,9 @@ CXX = clang++-3.5
 CXXFLAGS = -Wall -g -std=gnu++0x
 cxxpath = cxxtestgen
 
+#%.out: %.cpp
+#	g++ -std=c++0x -g -Wall $*.cpp -o $*.out
+
 all: template_container_kattis_test
 
 hello_world:
