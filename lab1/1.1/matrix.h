@@ -1,6 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
-#include "../Vector.h"
+//#include "../Vector.h"
+#include "../kth_cprog_template_container.hpp"
 
 #define private public
 

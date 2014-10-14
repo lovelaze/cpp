@@ -19,17 +19,19 @@ int main() {
 	o = m;
 
 	Matrix p (5);
-	p.print();
+	std::cout << p << std::endl;
 
 
 	cout << endl;
-	p.print();
+	std::cout << p << std::endl;
 
 	
 	Matrix x;
 
-	std::cin >> x;
-	x.print();
+	//std::cin >> x;
+	//std::cout << x << std::endl;
+
+	
 
 
 	return 0;

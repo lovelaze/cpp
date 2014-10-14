@@ -153,13 +153,27 @@ std::istream& operator>> ( std::istream& is, Matrix& matrix) {
 	}
 
 
-	cerr << input << endl;
+	std::cerr << input << std::endl;
 
 	
 	return is;
 }
 
-/*
-std::ostream& operator<< ( std::ostream&, Matrix& ) {
 
-}*/
+std::ostream& operator<< ( std::ostream& os, Matrix& matrix) {
+	os << "[ ";
+		
+	for (Matrix::index i = 0; i < matrix.m_rows - 1; ++i) {
+		for (Matrix::index j = 0; j < matrix.m_cols; ++j) {
+			os << matrix.m_vectors[i][j] << " ";
+		}
+		os << std::endl << "; ";
+	}
+
+	for (Matrix::index j = 0; j < matrix.m_cols; ++j) {
+		os << matrix.m_vectors[matrix.m_rows-1][j] << " ";
+	}
+
+	os << "]";
+	return os;
+}

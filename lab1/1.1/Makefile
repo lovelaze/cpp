@@ -16,4 +16,4 @@ clean:
 
 
 matrix:
-	clang++-3.5 -std=gnu++0x -Wall -g matrix_test.cpp -o matrix_test.out
+	clang++-3.5 -std=gnu++0x -Wall -g matrix_test.cpp matrix.cpp -o matrix_test.out

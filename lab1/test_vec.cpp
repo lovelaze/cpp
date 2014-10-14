@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdexcept>
-//#include "UIntVector.h"     // inkludera din headerfil här
 #include "kth_cprog_simple_container.hpp"
 
 using namespace std;
