@@ -1,8 +1,9 @@
-#cxxpath = /info/DD2387/labs/cxxtest/cxxtestgen.py
-CXX = clang++-3.5
-#CXX = g++
-CXXFLAGS = -std=gnu++0x -Wall -g -pedantic
-cxxpath = cxxtestgen
+cxxpath = /info/DD2387/labs/cxxtest/cxxtestgen.py
+#cxxpath = cxxtestgen
+#CXX = clang++
+CXX = g++
+CXXFLAGS = -std=gnu++0x -Wall -g
+
 
 #%.out: %.cpp
 #	g++ -std=c++0x -g -Wall $*.cpp -o $*.out

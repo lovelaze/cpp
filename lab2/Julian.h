@@ -1,0 +1,3 @@
+class Julian : Date {
+	
+}
