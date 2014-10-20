@@ -1,6 +1,12 @@
+#include <iostream>
+#include <string>
 #include "Julian.h"
 
+
 using namespace lab2;
+
+Julian::Julian(int day, int month, int year) : Date::Date(day, month, year, 7, 12) {
+}
 
 Julian::~Julian() {
 	

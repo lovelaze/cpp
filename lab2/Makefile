@@ -3,7 +3,7 @@ all: datetest
 
 
 datetest: DateTest.cpp
-	clang++-3.5 -std=c++11 -Wall -g DateTest.cpp Date.cpp -o DateTest.out
+	clang++ -std=gnu++0x -Wall -g DateTest.cpp Date.cpp Julian.cpp -o DateTest.out
 
 run:
 	./DateTest.out

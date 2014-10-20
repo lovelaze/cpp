@@ -14,6 +14,10 @@ Date::Date(int day, int month, int year, int dpw, int mpy) : day_(day), month_(m
 
 }
 
+Date::~Date() {
+
+}
+
 
 /** FUNCTIONS **/
 
@@ -50,4 +54,13 @@ int Date::months_per_year() const {
 std::ostream & operator<<(std::ostream & os, const Date &) {
 
 	return os;
+}
+
+void Date::debug() {
+	std::cout << "day_ = " << day_ << std::endl;
+	std::cout << "month_ = " << month_ << std::endl;
+	std::cout << "year_ = " << year_ << std::endl;
+	std::cout << "daysPerWeek_ = " << daysPerWeek_ << std::endl;
+	std::cout << "monthsPerYear_ = " << monthsPerYear_ << std::endl;
+	
 }

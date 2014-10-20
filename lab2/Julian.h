@@ -1,7 +1,13 @@
+#ifndef JULIAN_H
+#define JULIAN_H
+#include "Date.h"
 
 namespace lab2 {
 
-	class Julian : public lab2::Date {
+	class Julian : public Date {
+
+	public:
+		Julian(int day, int month, int year);
 
 		~Julian();
 		
@@ -13,3 +19,5 @@ namespace lab2 {
 	};
 
 }
+
+#endif

@@ -11,6 +11,8 @@ namespace lab2 {
 
 class lab2::Date {
 
+protected:
+
 private:
 	int day_;			// current day
 	int month_;			// current month
@@ -37,6 +39,8 @@ public:
 	int days_per_week() const;
 	int days_this_month() const;
 	int months_per_year() const;
+
+	void debug();
 
 	// pure virtual since this dependes on what date is used
 	virtual std::string week_day_name() const = 0;
