@@ -34,16 +34,9 @@ int Date::day() const {
 	return day_;
 }
 
-int Date::week_day() const {
-	return 0; // TODO
-}
 
 int Date::days_per_week() const {
 	return daysPerWeek_;
-}
-
-int Date::days_this_month() const {
-	return 0; // TODO
 }
 
 int Date::months_per_year() const {
@@ -51,8 +44,19 @@ int Date::months_per_year() const {
 }
 
 
-std::ostream & operator<<(std::ostream & os, const Date &) {
+std::ostream & operator<<(std::ostream & os, const Date & date) {
 
+	os << date.year() << "-";
+
+	int m = date.month();
+	if (m < 10) os << 0 << m;
+		else os << m;
+
+	os << "-";
+
+	int d = date.day();
+	if (d < 10) os << 0 << d;
+		else os << d;
 	return os;
 }
 

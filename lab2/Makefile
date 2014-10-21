@@ -1,9 +1,9 @@
 
+
 all: datetest
 
-
 datetest: DateTest.cpp
-	clang++ -std=gnu++0x -Wall -g DateTest.cpp Date.cpp Julian.cpp -o DateTest.out
+	clang++-3.5 -std=gnu++0x -Wall -g DateTest.cpp Date.cpp IsoDate.cpp Julian.cpp -o DateTest.out
 
 run:
 	./DateTest.out

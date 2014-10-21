@@ -1,23 +1,27 @@
-#include <iostream>
-#include <string>
 #include "Julian.h"
 
 
 using namespace lab2;
 
-Julian::Julian(int day, int month, int year) : Date::Date(day, month, year, 7, 12) {
-}
-
-Julian::~Julian() {
-	
-}
-
-std::string Julian::week_day_name() const {
+Julian::Julian() : IsoDate() {
 
 }
-std::string Julian::month_name() const {
+
+Julian::Julian(int day, int month, int year) : IsoDate(day, month, year) {
 
 }
+
+//TODO
 int Julian::mod_julian_day() const {
+	return 0;
+}
 
+//TODO
+Date & Julian::add_year(int n) {
+	return *this;
+}
+
+//TODO
+Date & Julian::add_month(int n) {
+	return *this;
 }

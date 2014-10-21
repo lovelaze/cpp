@@ -1,22 +1,27 @@
 #ifndef JULIAN_H
 #define JULIAN_H
-#include "Date.h"
+
+#include <string>
+#include <vector>
+#include "IsoDate.h"
 
 namespace lab2 {
 
-	class Julian : public Date {
+class Julian : public IsoDate {
 
-	public:
-		Julian(int day, int month, int year);
+public:
+	Julian();
+	Julian(int day, int month, int year);
 
-		~Julian();
-		
-		std::string week_day_name() const;
-		std::string month_name() const;
-		int mod_julian_day() const;
+	int mod_julian_day() const;
 
+	Julian & operator++(int);
+	Julian & operator--(int);
 
-	};
+	Date & add_year(int n = 1);
+	Date & add_month(int n = 1);
+
+};
 
 }
 
