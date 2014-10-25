@@ -44,6 +44,35 @@ int Date::months_per_year() const {
 }
 
 
+bool Date::operator==(const Date & date) const {
+	return mod_julian_day() == date.mod_julian_day();
+}
+
+bool Date::operator!=(const Date & date) const {
+	return mod_julian_day() != date.mod_julian_day();
+}
+
+bool Date::operator<(const Date & date) const {
+	return mod_julian_day() < date.mod_julian_day();
+}
+
+bool Date::operator<=(const Date & date) const {
+	return mod_julian_day() <= date.mod_julian_day();
+}
+
+
+bool Date::operator>(const Date & date) const {
+	return mod_julian_day() > date.mod_julian_day();
+}
+
+bool Date::operator>=(const Date & date) const {
+	return mod_julian_day() >= date.mod_julian_day();
+}
+
+
+
+
+
 std::ostream & operator<<(std::ostream & os, const Date & date) {
 
 	os << date.year() << "-";

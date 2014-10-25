@@ -37,10 +37,10 @@ public:
 
 	void debug(); // debug function
 
-	// pure virtual since this dependes on what date is used
-	virtual std::string week_day_name() const = 0;
-	// pure virtual since this dependes on what date is used
-	virtual std::string month_name() const = 0;
+	// pure virtual since this depends on what date is used
+	virtual const std::string week_day_name() const = 0;
+	// pure virtual since this depends on what date is used
+	virtual const std::string month_name() const = 0;
 
 	// modified julian day, pure virtual, depends on the date used
 	virtual int mod_julian_day() const = 0;
