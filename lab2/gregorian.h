@@ -1,7 +1,7 @@
 #ifndef GREGORIAN_H
 #define GREGORIAN_H
 
-#include "IsoDate.h"
+#include "isodate.h"
 
 namespace lab2 {
 

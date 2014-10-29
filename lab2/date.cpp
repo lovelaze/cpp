@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Date.h"
+#include "date.h"
 
 using namespace lab2;
 

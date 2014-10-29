@@ -1,7 +1,7 @@
 #ifndef JULIAN_H
 #define JULIAN_H
 
-#include "IsoDate.h"
+#include "isodate.h"
 
 namespace lab2 {
 

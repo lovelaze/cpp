@@ -1,4 +1,4 @@
-#include "IsoDate.h"
+#include "isodate.h"
 
 #include <vector>
 #include <string>
@@ -10,11 +10,9 @@ std::vector<std::string> IsoDate::days = {"monday", "tuesday", "wednessday", "th
 std::vector<std::string> IsoDate::months = {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
 IsoDate::IsoDate() : Date() {
-
 }
 
 IsoDate::IsoDate(int day, int month, int year) : Date(day, month, year, 7, 12) {
-
 }
 
 // TODO
@@ -33,4 +31,8 @@ const std::string IsoDate::week_day_name() const {
 
 const std::string IsoDate::month_name() const {
 	return IsoDate::months[month_];
+}
+
+void IsoDate::JD_set_date(int) {
+	
 }

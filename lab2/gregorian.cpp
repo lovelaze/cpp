@@ -1,8 +1,20 @@
-#include "Gregorian.h"
+#include "gregorian.h"
+#include "kattistime.h"
 
 using namespace lab2;
 
-Gregorian::Gregorian() : IsoDate(){
+Gregorian::Gregorian() {
+	time_t time;
+	k_time(&time);
+
+	struct tm * t = gmtime(&time);
+
+	this->year_ = t->tm_year + 1900;
+	this->month_ = t->tm_mon + 1;  
+    this->day_ = t->tm_mday;
+
+    daysPerWeek_= 7;
+    monthsPerYear_ = 12;
 
 }
 

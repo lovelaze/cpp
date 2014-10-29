@@ -19,6 +19,7 @@ protected:
 public:
 	Date();
 	Date(int day, int month, int year, int daysPerWeek, int monthsPerYear);
+	Date(const Date &);
 
 	virtual ~Date();
 
