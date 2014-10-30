@@ -8,9 +8,11 @@ namespace lab2 {
 class Date {
 
 protected:
-	int day_;			// current day
-	int month_;			// current month
 	int year_;			// current year
+	int month_;			// current month
+	int day_;			// current day
+
+	
 
 	int daysPerWeek_;	// days per week
 	int monthsPerYear_;	// months per year
@@ -18,8 +20,8 @@ protected:
 
 public:
 	Date();
-	Date(int day, int month, int year, int daysPerWeek, int monthsPerYear);
-	Date(const Date &);
+	Date(int year, int month, int day, int daysPerWeek, int monthsPerYear);
+	
 
 	virtual ~Date();
 
@@ -45,6 +47,8 @@ public:
 
 	// modified julian day, pure virtual, depends on the date used
 	virtual int mod_julian_day() const = 0;
+
+	bool is_leap_year() const;
 
 
 	/** OPERATORS **/
@@ -73,12 +77,12 @@ public:
 	bool operator>=(const Date & date) const;
 
 
-protected:
+
 	// add years
-	virtual Date & add_year(int) = 0;
+	virtual Date & add_year(int n = 1) = 0;
 
 	// add months
-	virtual Date & add_month(int) = 0;
+	virtual Date & add_month(int n = 1) = 0;
 
 
 

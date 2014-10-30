@@ -18,22 +18,9 @@ Gregorian::Gregorian() {
 
 }
 
-Gregorian::Gregorian(int day, int month, int year) : IsoDate(day, month, year) {
+Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
 
 }
-
-
-//TODO
-/*int Gregorian::mod_julian_day() const {
-	int a = (14-month_)/12;
-	int y = year_ + 4800 - a;
-	int m = month_ + (12*a) - 3;
-
-	int jdn =  day_ + (((153*m) +2)/5) + (365*y) + (y/4) - (y/100) + (y/400) - 32045;
-
-	return jdn;// - 2400000.5;
-
-}*/
 
 int Gregorian::mod_julian_day() const {
 	int a = (14 - month()) / 12;
@@ -69,4 +56,23 @@ Date & Gregorian::add_year(int n) {
 //TODO
 Date & Gregorian::add_month(int n) {
 	return *this;
+}
+
+void Gregorian::JD_set_date(int mjd) {
+  	int jdn = mjd + 2400000.5 + 0.5;
+
+  	int y = 4716, v = 3, j = 1401, u = 5, m = 2, s = 153, n = 12, w = 2, r = 4, B = 274277, p = 1461, C = -38;
+
+  	int f = jdn + j + (((4 * jdn + B)/146097) * 3)/4 + C;
+  	int e = r * f + v;
+  	int g = (e % p)/r;
+  	int h = u * g + w;
+
+  	int day = (h % s)/u + 1;
+  	int month = (((h/s) + m) % n) + 1;
+  	int year = e/p - y + (n + m - month)/n;
+
+  	day_ = day;
+  	month_ = month;
+  	year_ = year;
 }

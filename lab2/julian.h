@@ -9,7 +9,9 @@ class Julian : public IsoDate {
 
 public:
 	Julian();
-	Julian(int day, int month, int year);
+	Julian(int year, int month, int day);
+	Julian(const Date &);
+	Julian(const Date *);
 
 	int mod_julian_day() const;
 
@@ -18,6 +20,8 @@ public:
 
 	Date & add_year(int n = 1);
 	Date & add_month(int n = 1);
+
+	void JD_set_date(int);
 
 };
 

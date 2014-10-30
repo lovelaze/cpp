@@ -1,39 +1,31 @@
 #include "julian.h"
 #include "kattistime.h"
-
+#include "gregorian.h"
+#include <iostream>
 
 using namespace lab2;
 
 Julian::Julian() {
+	Gregorian g;
 
-	time_t time;
-	k_time(&time);
+	int mjd = g.mod_julian_day();
 
-	struct tm * t = gmtime(&time);
-
-	this->year_ = t->tm_year + 1900;
-	this->month_ = t->tm_mon + 1;  
-    this->day_ = t->tm_mday;
-
-    daysPerWeek_= 7;
-    monthsPerYear_ = 12;
+	JD_set_date(mjd);
 
 }
 
-Julian::Julian(int day, int month, int year) : IsoDate(day, month, year) {
+Julian::Julian(int year, int month, int day) : IsoDate(year, month, day) {
 
 }
 
-//TODO
-/*int Julian::mod_julian_day() const {
-	int a = (14-month_)/12;
-	int y = year_ + 4800 - a;
-	int m = month_ + (12*a) - 3;
+Julian::Julian(const Date &) {
 
-	int jdn =  day_ + (((153*m) +2)/5) + (365*y) + (y/4) - 32083;
+}
 
-	return jdn;// - 2400000.5;
-}*/
+Julian::Julian(const Date *) {
+
+}
+
 
 
 
@@ -66,4 +58,24 @@ Date & Julian::add_year(int n) {
 //TODO
 Date & Julian::add_month(int n) {
 	return *this;
+}
+
+void Julian::JD_set_date(int mjd) {
+
+	int jdn = mjd + 2400000.5 + 0.5;
+
+ 	int b = 0;
+ 	int c = jdn + 32082;
+
+ 	int d = (4*c + 3)/1461;
+ 	int e = c - (int)(1461*d/4);
+  	int m = (5*e + 2)/153;
+
+ 	int day = e - (int)((153*m + 2)/5) + 1;
+  	int month = m + 3 - 12 * (int)(m/10);
+  	int year = 100*b + d - 4800 + (int)(m/10);
+
+ 	day_ = day;
+  	month_ = month;
+  	year_ = year;
 }

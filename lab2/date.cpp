@@ -6,11 +6,10 @@ using namespace lab2;
 
 
 /** CONSTRUCTORS **/
-Date::Date() : day_(0), month_(0), year_(0), daysPerWeek_(0), monthsPerYear_(0) {
-
+Date::Date() : year_(0), month_(0), day_(0), daysPerWeek_(0), monthsPerYear_(0) {
 }
 
-Date::Date(int day, int month, int year, int dpw, int mpy) : day_(day), month_(month), year_(year), daysPerWeek_(dpw), monthsPerYear_(mpy) {
+Date::Date(int year, int month, int day, int dpw, int mpy) : year_(year), month_(month), day_(day), daysPerWeek_(dpw), monthsPerYear_(mpy) {
 
 }
 
@@ -71,6 +70,40 @@ bool Date::operator>=(const Date & date) const {
 
 
 
+// prefix ++, add one day
+Date & Date::operator++() {
+
+
+
+	++day_;
+	return *this;
+}
+
+// prefix --, remove one day
+Date & Date::operator--() {
+	--day_;
+	return *this;
+}
+
+// +=, add days
+Date & Date::operator+=(const int i) {
+	day_ += i;
+	return *this;
+}
+
+// -=, remove days
+Date & Date::operator-=(const int i) {
+	day_ -= i;
+	return *this;
+}
+
+// -, difference between dates
+int Date::operator-(const Date & date) const {
+
+	return this->mod_julian_day() - date.mod_julian_day();
+}
+
+
 
 
 std::ostream & operator<<(std::ostream & os, const Date & date) {
@@ -96,4 +129,13 @@ void Date::debug() {
 	std::cout << "daysPerWeek_ = " << daysPerWeek_ << std::endl;
 	std::cout << "monthsPerYear_ = " << monthsPerYear_ << std::endl;
 	
+}
+
+bool Date::is_leap_year() const {
+
+	bool b;
+
+	
+	
+	return !(year_ % 4);
 }
