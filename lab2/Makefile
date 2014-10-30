@@ -1,15 +1,15 @@
+CXX = g++
 
+all: test
 
-all: DateTest
-
-DateTest: DateTest.cpp
-	clang++-3.5 -std=gnu++0x -Wall -g DateTest.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o DateTest.out
+test: test.cpp
+	$(CXX) -std=gnu++0x -Wall -g test.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o test.out
 
 datetest: datetest.cpp
-	clang++-3.5 -std=gnu++0x -Wall -g datetest.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o DateTest.out
+	$(CXX) -std=gnu++0x -Wall -g datetest.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o test.out
 
 run:
-	./DateTest.out
+	./test.out
 
 .PHONY: clean run
 

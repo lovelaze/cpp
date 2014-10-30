@@ -16,17 +16,16 @@ IsoDate::IsoDate() : Date(0,0,0,7,12) {
 
 IsoDate::IsoDate(int year, int month, int day) : Date(year, month, day, 7, 12) {
 
-	if (day < 1 || month < 1 || day > IsoDate::days_month[month] || month > 12) {
-		//throw std::out_of_range("illegal arguments");
+	if (day < 1 || month < 1 || day > IsoDate::days_month[month-1] || month > 12) {
+		throw std::out_of_range("illegal arguments");
 	}
 }
 
-// TODO
+
 int IsoDate::week_day() const {
 	return ((mod_julian_day()+2) % 7) + 1;
 }
 
-// TODO
 int IsoDate::days_this_month() const {
 	return days_month[month_-1];
 }
@@ -36,5 +35,5 @@ const std::string IsoDate::week_day_name() const {
 }
 
 const std::string IsoDate::month_name() const {
-	return IsoDate::months[month_];
+	return IsoDate::months[month_ - 1];
 }

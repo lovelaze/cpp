@@ -73,9 +73,19 @@ bool Date::operator>=(const Date & date) const {
 // prefix ++, add one day
 Date & Date::operator++() {
 
+	if ((day_+1) >= days_this_month()) {
+		if((month_+1) >= 12 ) {
+			++year_;
+			month_ = 1;
+		} else {
+			++month_;
+		}
 
+		day_ = 1;
+	} else {
+		++day_;
+	}
 
-	++day_;
 	return *this;
 }
 
@@ -129,13 +139,4 @@ void Date::debug() {
 	std::cout << "daysPerWeek_ = " << daysPerWeek_ << std::endl;
 	std::cout << "monthsPerYear_ = " << monthsPerYear_ << std::endl;
 	
-}
-
-bool Date::is_leap_year() const {
-
-	bool b;
-
-	
-	
-	return !(year_ % 4);
 }

@@ -48,8 +48,6 @@ public:
 	// modified julian day, pure virtual, depends on the date used
 	virtual int mod_julian_day() const = 0;
 
-	bool is_leap_year() const;
-
 
 	/** OPERATORS **/
 
