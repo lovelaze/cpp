@@ -79,14 +79,19 @@ int main()
     assert(g.week_day() == 4); // rätt veckodag
     g -= 3;                     // dra bort tre dagar
     g.add_month();              // lägg till en månad
+    assert(g.month() == 11);
     g.add_month(-1);            // dra bort en månad    
+    assert(g.month() == 10);
     g.add_year(10);             // lägg till tio år.
+    assert(g.year() == 2016);
     
     std::cout << "Testing miscellaneous functions..." << std::endl;
     Julian jj(tj);              // kopieringskonstruktor
     const Gregorian gg;
     gg.year();                  // gg konstant, läsa går bra
     g = gg;                     // tilldelning
+    assert(g.year() == gg.year());
+    assert(g == gg);
     if(g == gg ||               // jämförelse
        g != gg ||               // jämförelse 
        g < gg ||                // jämförelse 

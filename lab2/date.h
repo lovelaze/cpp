@@ -77,10 +77,10 @@ public:
 
 
 	// add years
-	virtual Date & add_year(int n = 1) = 0;
+	virtual Date & add_year(const int n = 1) = 0;
 
 	// add months
-	virtual Date & add_month(int n = 1) = 0;
+	virtual Date & add_month(const int n = 1) = 0;
 
 
 

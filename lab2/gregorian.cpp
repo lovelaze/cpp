@@ -1,5 +1,6 @@
 #include "gregorian.h"
 #include "kattistime.h"
+#include <iostream>
 
 using namespace lab2;
 
@@ -22,6 +23,21 @@ Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
 
 }
 
+Gregorian::Gregorian(const Date & date) {
+	JD_set_date(date.mod_julian_day());
+}
+
+Gregorian::Gregorian(const Date * datep) {
+	JD_set_date(datep->mod_julian_day());
+
+}
+
+
+bool Gregorian::is_leap_year() const {
+	return (year() % 4 == 0) && (year() % 100 != 0 || year() % 400 == 0);
+}
+
+
 int Gregorian::mod_julian_day() const {
 	int a = (14 - month()) / 12;
   	int y = year() + 4800 - a;
@@ -34,29 +50,16 @@ int Gregorian::mod_julian_day() const {
 }
 
 
-
-
-
-
 //TODO
-Gregorian & Gregorian::operator++(int) {
+Gregorian & Gregorian::operator++(int a) {
 	return *this;
 }
 
 //TODO
-Gregorian & Gregorian::operator--(int) {
+Gregorian & Gregorian::operator--(int a) {
 	return *this;
 }
 
-//TODO
-Date & Gregorian::add_year(int n) {
-	return *this;
-}
-
-//TODO
-Date & Gregorian::add_month(int n) {
-	return *this;
-}
 
 void Gregorian::JD_set_date(int mjd) {
   	int jdn = mjd + 2400000.5 + 0.5;

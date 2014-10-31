@@ -22,11 +22,62 @@ IsoDate::IsoDate(int year, int month, int day) : Date(year, month, day, 7, 12) {
 }
 
 
+IsoDate::~IsoDate() {
+
+}
+
+
+Date & IsoDate::add_month(const int n) {
+
+	if (n > 0) { // add months
+		for (int i=0; i < n; ++i) {
+
+			++month_;
+			if (month_ > 12) {
+				month_ = 1;
+				add_year();
+			}
+
+			if (day_ > days_this_month()) {
+				day_ = 1;
+				operator+=(29);
+			}
+
+		}
+	} else { // remove months
+		for (int i=0; i > n; --i) {
+			--month_;
+			if (month_ < 1) {
+				month_ = 12;
+				add_year(-1);
+			}
+
+			if (day_ > days_this_month()) {
+				day_ = 1;
+				operator+=(29);
+			}
+		}
+	}
+
+	return *this;
+}
+
+Date & IsoDate::add_year(const int n) {
+
+	year_ += n;
+	if (month_ == 2 && day_ == 29 && !is_leap_year()) {
+		day_ = 28;
+	}
+	return *this;
+}
+
+
 int IsoDate::week_day() const {
 	return ((mod_julian_day()+2) % 7) + 1;
 }
 
 int IsoDate::days_this_month() const {
+	if (month_ == 2 && is_leap_year()) return 29;
 	return days_month[month_-1];
 }
 

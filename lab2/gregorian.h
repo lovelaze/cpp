@@ -17,11 +17,12 @@ public:
 
 	Gregorian & operator++(int);
 	Gregorian & operator--(int);
-
-	Date & add_year(int n = 1);
-	Date & add_month(int n = 1);
+	Gregorian & operator++() {Date::operator++(); return *this;};
+	Gregorian & operator--() {Date::operator--(); return *this;};
 
 	void JD_set_date(int);
+
+	bool is_leap_year() const;
 
 };
 

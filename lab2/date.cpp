@@ -69,41 +69,46 @@ bool Date::operator>=(const Date & date) const {
 }
 
 
-
 // prefix ++, add one day
 Date & Date::operator++() {
-
-	if ((day_+1) >= days_this_month()) {
-		if((month_+1) >= 12 ) {
-			++year_;
-			month_ = 1;
-		} else {
-			++month_;
-		}
-
-		day_ = 1;
-	} else {
-		++day_;
-	}
-
+	this->operator+=(1);
 	return *this;
 }
 
 // prefix --, remove one day
 Date & Date::operator--() {
-	--day_;
+	this->operator-=(1);
 	return *this;
 }
 
 // +=, add days
 Date & Date::operator+=(const int i) {
-	day_ += i;
+	for (int day=i; day > 0; --day) {
+
+		++day_;
+
+		if (day_ > days_this_month()) {
+			day_ = 1;
+			add_month();
+		}
+	}
+
 	return *this;
 }
 
 // -=, remove days
 Date & Date::operator-=(const int i) {
-	day_ -= i;
+	
+	for (int day=i; day > 0; --day) {
+
+		--day_;
+
+		if (day_ < 1) {
+			add_month(-1);
+			day_ = days_this_month();
+		}
+	}
+
 	return *this;
 }
 

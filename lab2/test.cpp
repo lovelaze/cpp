@@ -3,6 +3,10 @@
 #include "gregorian.h"
 #include "kattistime.h"
 
+using namespace lab2;
+using namespace std;
+
+
 int main() {
 
 	time_t tp;
@@ -10,22 +14,14 @@ int main() {
     set_k_time(tp);
 
 
-	lab2::Gregorian g;
-	lab2::Julian j;
+	Gregorian p;
 
-	std::cout << g << std::endl;
-	g.debug();
-	std::cout << g.mod_julian_day() << std::endl;
-	std::cout << g.week_day() << std::endl;
-	std::cout << g.week_day_name() << std::endl;
-	std::cout << g.month_name() << std::endl;
+	++p;
+	cout << p << endl;
+
 	
-	std::cout << std::endl;
+	
 
-	std::cout << j << std::endl;
-	j.debug();
-	std::cout << j.mod_julian_day() << std::endl;
-	g+=2;
-	g.debug();
+
 
 }

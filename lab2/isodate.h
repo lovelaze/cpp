@@ -12,6 +12,7 @@ public:
 	IsoDate();
 	IsoDate(int year, int month, int day);
 	
+	virtual ~IsoDate();
 
 	int week_day() const;
 	int days_this_month() const;
@@ -21,11 +22,17 @@ public:
 
 	int mod_julian_day() const = 0;
 
-	virtual Date & add_year(int n = 1) = 0;
+	virtual Date & add_year(const int n = 1);
 
-	virtual Date & add_month(int n = 1) = 0;
+	virtual Date & add_month(const int n = 1);
 
 	virtual void JD_set_date(int) = 0;
+
+	virtual bool is_leap_year() const = 0;
+
+	
+
+
 
 private:
 	static std::vector<int> days_month;

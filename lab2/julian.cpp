@@ -18,12 +18,16 @@ Julian::Julian(int year, int month, int day) : IsoDate(year, month, day) {
 
 }
 
-Julian::Julian(const Date &) {
-
+Julian::Julian(const Date & date) {
+	JD_set_date(date.mod_julian_day());
 }
 
-Julian::Julian(const Date *) {
+Julian::Julian(const Date * datep) {
+	JD_set_date(datep->mod_julian_day());
+}
 
+bool Julian::is_leap_year() const {
+	return !(year() % 4);
 }
 
 
@@ -46,17 +50,6 @@ Julian & Julian::operator++(int) {
 
 //TODO
 Julian & Julian::operator--(int) {
-	return *this;
-}
-
-
-//TODO
-Date & Julian::add_year(int n) {
-	return *this;
-}
-
-//TODO
-Date & Julian::add_month(int n) {
 	return *this;
 }
 

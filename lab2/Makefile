@@ -3,10 +3,13 @@ CXX = g++
 all: test
 
 test: test.cpp
-	$(CXX) -std=gnu++0x -Wall -g test.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o test.out
+	$(CXX) -std=gnu++0x -Wall -g test.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
 
 datetest: datetest.cpp
-	$(CXX) -std=gnu++0x -Wall -g datetest.cpp date.cpp isodate.cpp julian.cpp gregorian.cpp kattistime.cpp -o test.out
+	$(CXX) -std=gnu++0x -Wall -g datetest.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
+
+test22b:
+	$(CXX) -std=gnu++0x -Wall -g cprog09lab22b.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
 
 run:
 	./test.out

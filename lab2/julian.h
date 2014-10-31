@@ -18,10 +18,12 @@ public:
 	Julian & operator++(int);
 	Julian & operator--(int);
 
-	Date & add_year(int n = 1);
-	Date & add_month(int n = 1);
+	Julian & operator++() {Date::operator++(); return *this;};
+	Julian & operator--() {Date::operator--(); return *this;};
 
 	void JD_set_date(int);
+
+	bool is_leap_year() const;
 
 };
 
