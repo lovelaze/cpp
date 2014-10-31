@@ -33,9 +33,11 @@ public:
 	int day() const;
 
 	int days_per_week() const;
+	
 	int months_per_year() const;
 
 	virtual int week_day() const = 0;
+
 	virtual int days_this_month() const = 0;
 
 	void debug(); // debug function

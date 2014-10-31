@@ -15,6 +15,7 @@ public:
 	virtual ~IsoDate();
 
 	int week_day() const;
+	
 	int days_this_month() const;
 
 	const std::string week_day_name() const;
@@ -30,7 +31,7 @@ public:
 
 	virtual bool is_leap_year() const = 0;
 
-	
+
 
 
 

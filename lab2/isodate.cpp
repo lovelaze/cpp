@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 
+
 using namespace lab2;
 
 std::vector<int> IsoDate::days_month = {31, 28, 31, 30, 31 , 30, 31, 31, 30, 31, 30, 31};
@@ -16,7 +17,7 @@ IsoDate::IsoDate() : Date(0,0,0,7,12) {
 
 IsoDate::IsoDate(int year, int month, int day) : Date(year, month, day, 7, 12) {
 
-	if (day < 1 || month < 1 || day > IsoDate::days_month[month-1] || month > 12) {
+	if (day < 1 || month < 1 || day > days_this_month() || month > 12) {
 		throw std::out_of_range("illegal arguments");
 	}
 }

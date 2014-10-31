@@ -1,6 +1,7 @@
 #include "gregorian.h"
 #include "kattistime.h"
 #include <iostream>
+#include <stdexcept>
 
 using namespace lab2;
 
@@ -20,6 +21,8 @@ Gregorian::Gregorian() {
 }
 
 Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
+
+	
 
 }
 

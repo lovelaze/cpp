@@ -2,6 +2,7 @@
 #include "kattistime.h"
 #include "gregorian.h"
 #include <iostream>
+#include <stdexcept>
 
 using namespace lab2;
 
@@ -15,7 +16,7 @@ Julian::Julian() {
 }
 
 Julian::Julian(int year, int month, int day) : IsoDate(year, month, day) {
-
+	
 }
 
 Julian::Julian(const Date & date) {

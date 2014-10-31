@@ -14,7 +14,8 @@ int main() {
     set_k_time(tp);
 
 
-	Gregorian p;
+	Gregorian p(2016, 2, 28);
+	cout << p.is_leap_year() << endl;
 
 	++p;
 	cout << p << endl;

@@ -32,5 +32,8 @@ int main() {
 	++a;
 	std::cout << a.a << std::endl;
 
+	int i = 01;
+	std::cout << i << std::endl;
+
 
 }

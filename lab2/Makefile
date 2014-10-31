@@ -8,8 +8,11 @@ test: test.cpp
 datetest: datetest.cpp
 	$(CXX) -std=gnu++0x -Wall -g datetest.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
 
-test22b:
-	$(CXX) -std=gnu++0x -Wall -g cprog09lab22b.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
+test22a:
+	$(CXX) -std=gnu++0x -Wall -g cprog09lab22a.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
+
+test22c:
+	$(CXX) -std=gnu++0x -Wall -g cprog09lab22c.cpp date.cpp isodate.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
 
 run:
 	./test.out
