@@ -146,6 +146,16 @@ int main()
                     return 1;
                 }
         }
+
+
+    Gregorian ggg;
+    Julian jjj;
+    std::cout << "Today it is " << ggg << " gregorian and " << jjj << " julian";
+    assert(ggg - jjj == 0);
+    if (ggg - jjj == 0) std::cout << ". It is the same date" << std::endl;
+    ggg = jjj;
+    assert(ggg - jjj == 0);
+    if (ggg - jjj == 0) std::cout << "It is still the same date" << std::endl;
     
     std::cout << std::endl << "All tests were successful." << std::endl;
 

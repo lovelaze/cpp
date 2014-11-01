@@ -16,7 +16,9 @@ Julian::Julian() {
 }
 
 Julian::Julian(int year, int month, int day) : IsoDate(year, month, day) {
-	
+	if (!is_valid_date(year,month,day)) {
+		throw std::out_of_range("invalid date");
+	}
 }
 
 Julian::Julian(const Date & date) {
@@ -26,6 +28,15 @@ Julian::Julian(const Date & date) {
 Julian::Julian(const Date * datep) {
 	JD_set_date(datep->mod_julian_day());
 }
+
+Julian & Julian::operator=(const Date & date) {
+	if (this == &date) return *this;
+
+	JD_set_date(date.mod_julian_day());
+	return *this;
+}
+
+
 
 bool Julian::is_leap_year() const {
 	return !(year() % 4);
@@ -45,13 +56,17 @@ int Julian::mod_julian_day() const {
  
 
 //TODO
-Julian & Julian::operator++(int) {
-	return *this;
+Julian Julian::operator++(int) {
+	Julian g(this);
+	++(*this);
+	return g;
 }
 
 //TODO
-Julian & Julian::operator--(int) {
-	return *this;
+Julian Julian::operator--(int) {
+    Julian g(this);
+	--(*this);
+	return g;
 }
 
 void Julian::JD_set_date(int mjd) {

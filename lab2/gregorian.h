@@ -13,10 +13,13 @@ public:
 	Gregorian(const Date &);
 	Gregorian(const Date *);
 
+	Gregorian & operator=(const Date &);
+
+
 	int mod_julian_day() const;
 
-	Gregorian & operator++(int);
-	Gregorian & operator--(int);
+	Gregorian operator++(int);
+	Gregorian operator--(int);
 	Gregorian & operator++() {Date::operator++(); return *this;};
 	Gregorian & operator--() {Date::operator--(); return *this;};
 

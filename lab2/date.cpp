@@ -83,31 +83,44 @@ Date & Date::operator--() {
 
 // +=, add days
 Date & Date::operator+=(const int i) {
-	for (int day=i; day > 0; --day) {
 
-		++day_;
+	if (i < 0 ) {
+		Date::operator-=(-i);
+	} else {
+		for (int day=i; day > 0; --day) {
 
-		if (day_ > days_this_month()) {
-			day_ = 1;
-			add_month();
+			++day_;
+
+			if (day_ > days_this_month()) {
+				day_ = 1;
+				add_month();
+			}
 		}
 	}
+
+	
 
 	return *this;
 }
 
 // -=, remove days
 Date & Date::operator-=(const int i) {
-	
-	for (int day=i; day > 0; --day) {
+	if( i < 0) {
+		Date::operator+=(-i);
+	} else {
+		for (int day=i; day > 0; --day) {
 
-		--day_;
+			--day_;
 
-		if (day_ < 1) {
-			add_month(-1);
-			day_ = days_this_month();
+		    if (day_ < 1) {
+			    add_month(-1);
+		    	day_ = days_this_month();
+		    }
+
 		}
 	}
+	
+	
 
 	return *this;
 }

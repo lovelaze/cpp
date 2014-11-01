@@ -9,16 +9,25 @@ using namespace std;
 
 int main() {
 
+
+
 	time_t tp;
     time(&tp);    
     set_k_time(tp);
 
+	Julian j(2319,1,7);
 
-	Gregorian p(2016, 2, 28);
-	cout << p.is_leap_year() << endl;
+	Gregorian g(j);
 
-	++p;
-	cout << p << endl;
+	Julian jj (j);
+
+	jj = g;
+
+	cout << j << endl;
+
+	cout << g << endl;
+
+	cout << jj << endl;
 
 	
 	

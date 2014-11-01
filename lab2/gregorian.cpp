@@ -22,7 +22,9 @@ Gregorian::Gregorian() {
 
 Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
 
-	
+	if (!is_valid_date(year,month,day)) {
+		throw std::out_of_range("invalid date");
+	}
 
 }
 
@@ -33,6 +35,16 @@ Gregorian::Gregorian(const Date & date) {
 Gregorian::Gregorian(const Date * datep) {
 	JD_set_date(datep->mod_julian_day());
 
+}
+
+Gregorian & Gregorian::operator=(const Date & date) {
+
+	if (this == &date) return *this;
+
+
+	JD_set_date(date.mod_julian_day());
+
+	return *this;
 }
 
 
@@ -54,13 +66,17 @@ int Gregorian::mod_julian_day() const {
 
 
 //TODO
-Gregorian & Gregorian::operator++(int a) {
-	return *this;
+Gregorian Gregorian::operator++(int a) {
+	Gregorian g(this);
+	++(*this);
+	return g;
 }
 
 //TODO
-Gregorian & Gregorian::operator--(int a) {
-	return *this;
+Gregorian Gregorian::operator--(int a) {
+	Gregorian g(this);
+	--(*this);
+	return g;
 }
 
 

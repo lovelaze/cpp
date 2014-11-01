@@ -11,8 +11,6 @@ class IsoDate : public Date {
 public:
 	IsoDate();
 	IsoDate(int year, int month, int day);
-	
-	virtual ~IsoDate();
 
 	int week_day() const;
 	
@@ -31,6 +29,7 @@ public:
 
 	virtual bool is_leap_year() const = 0;
 
+	bool is_valid_date(int, int, int) const;
 
 
 

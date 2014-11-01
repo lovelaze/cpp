@@ -2,13 +2,12 @@
 
 #include <vector>
 #include <string>
-#include <stdexcept>
 
 
 using namespace lab2;
 
 std::vector<int> IsoDate::days_month = {31, 28, 31, 30, 31 , 30, 31, 31, 30, 31, 30, 31};
-std::vector<std::string> IsoDate::days = {"monday", "tuesday", "wednessday", "thursday", "friday", "saturday", "sunday"};
+std::vector<std::string> IsoDate::days = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 std::vector<std::string> IsoDate::months = {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
 IsoDate::IsoDate() : Date(0,0,0,7,12) {
@@ -17,14 +16,9 @@ IsoDate::IsoDate() : Date(0,0,0,7,12) {
 
 IsoDate::IsoDate(int year, int month, int day) : Date(year, month, day, 7, 12) {
 
-	if (day < 1 || month < 1 || day > days_this_month() || month > 12) {
-		throw std::out_of_range("illegal arguments");
-	}
-}
 
-
-IsoDate::~IsoDate() {
-
+	
+	
 }
 
 
@@ -40,8 +34,8 @@ Date & IsoDate::add_month(const int n) {
 			}
 
 			if (day_ > days_this_month()) {
-				day_ = 1;
-				operator+=(29);
+				add_month(-1);
+				operator+=(30);
 			}
 
 		}
@@ -54,8 +48,8 @@ Date & IsoDate::add_month(const int n) {
 			}
 
 			if (day_ > days_this_month()) {
-				day_ = 1;
-				operator+=(29);
+				add_month();
+				operator-=(30);
 			}
 		}
 	}
@@ -88,4 +82,8 @@ const std::string IsoDate::week_day_name() const {
 
 const std::string IsoDate::month_name() const {
 	return IsoDate::months[month_ - 1];
+}
+
+bool IsoDate::is_valid_date(int year, int month, int day) const {
+	return !(day < 1 || month < 1 || day > days_this_month() || month > 12);
 }
