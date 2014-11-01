@@ -156,8 +156,213 @@ int main()
     ggg = jjj;
     assert(ggg - jjj == 0);
     if (ggg - jjj == 0) std::cout << "It is still the same date" << std::endl;
+
+    {
+
+        Julian j(2000,11,19);
+
+        Gregorian g(j);
+
+        assert(g.year() == 2000);
+        assert(g.month() == 12);
+        assert(g.day() == 2);
+        assert(g.days_per_week() == 7);
+        assert(g.months_per_year() == 12);
+
+
+    }
+
+    {
+        Gregorian date(1991, 11, 23);
+        date.add_year();
+        assert(date.year() == 1992);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+        date.add_year(3);
+        assert(date.year() == 1995);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+        date.add_year(-1);
+        assert(date.year() == 1994);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+    }
+
+    {
+        Julian date(1991, 11, 23);
+        date.add_year();
+        assert(date.year() == 1992);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+        date.add_year(3);
+        assert(date.year() == 1995);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+        date.add_year(-1);
+        assert(date.year() == 1994);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+    }
+
+    {
+        Gregorian date(1991, 11, 23);
+        date.add_month();
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 23);
+
+        date.add_month(2);
+        assert(date.year() == 1992);
+        assert(date.month() == 2);
+        assert(date.day() == 23);
+
+        date.add_month(-1);
+        assert(date.year() == 1992);
+        assert(date.month() == 1);
+        assert(date.day() == 23);
+
+        date.add_month(-3);
+        assert(date.year() == 1991);
+        assert(date.month() == 10);
+        assert(date.day() == 23);
+
+        date = Gregorian(1991, 1, 31);
+
+        date.add_month();
+
+        assert(date.year() == 1991);
+        assert(date.month() == 3);
+        assert(date.day() == 2);
+
+        date = Gregorian(1991, 3, 30);
+        
+        date.add_month(-1);
+        assert(date.year() == 1991);
+        assert(date.month() == 2);
+        assert(date.day() == 28);
+
+
+    }
+
+    {
+        Julian date(1991, 11, 23);
+        date.add_month();
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 23);
+
+        date.add_month(2);
+        assert(date.year() == 1992);
+        assert(date.month() == 2);
+        assert(date.day() == 23);
+
+        date.add_month(-1);
+        assert(date.year() == 1992);
+        assert(date.month() == 1);
+        assert(date.day() == 23);
+
+        date.add_month(-3);
+        assert(date.year() == 1991);
+        assert(date.month() == 10);
+        assert(date.day() == 23);
+
+        date = Julian(1991, 1, 31);
+
+        date.add_month();
+
+        assert(date.year() == 1991);
+        assert(date.month() == 3);
+        assert(date.day() == 2);
+
+        date = Julian(1991, 3, 30);
+        
+        date.add_month(-1);
+        assert(date.year() == 1991);
+        assert(date.month() == 2);
+        assert(date.day() == 28);
+    }
+
+    {
+        Gregorian date(1991, 11, 23);
+
+        ++date;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 24);
+
+        --date;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 23);
+
+        date += 2;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 25);
+
+        date += -1;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 24);
+
+        date -= -1;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 25);
+
+        date -= 1;
+        assert(date.year() == 1991);
+        assert(date.month() == 11);
+        assert(date.day() == 24);
+
+        date = Julian(1991, 11, 23);
+
+        ++date;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 7);
+
+        --date;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 6);
+
+        date += 2;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 8);
+
+        date += -1;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 7);
+
+        date -= -1;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 8);
+
+        date -= 1;
+        assert(date.year() == 1991);
+        assert(date.month() == 12);
+        assert(date.day() == 7);
+
+    }
+
+
+
+
+
+
     
     std::cout << std::endl << "All tests were successful." << std::endl;
+
 
     // följande ska inte gå att kompilera
 #if 0

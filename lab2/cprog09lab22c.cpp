@@ -82,6 +82,7 @@ namespace {
 int main(int argc, char **argv) {
 	char buf[101];
 	while(scanf("%100s", buf) == 1) {
+
         linenr++;
 		std::string command(buf);
 
@@ -254,5 +255,6 @@ int main(int argc, char **argv) {
 		}
 	}
 
+	std::cout << dates[480] << std::endl;
 	return 0;
 }

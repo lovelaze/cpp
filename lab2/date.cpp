@@ -71,13 +71,15 @@ bool Date::operator>=(const Date & date) const {
 
 // prefix ++, add one day
 Date & Date::operator++() {
-	this->operator+=(1);
+	//this->operator+=(1);
+	(*this)+=(1);
 	return *this;
 }
 
 // prefix --, remove one day
 Date & Date::operator--() {
-	this->operator-=(1);
+	//this->operator-=(1);
+	(*this)-=(1);
 	return *this;
 }
 

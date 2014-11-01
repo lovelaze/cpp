@@ -15,23 +15,14 @@ int main() {
     time(&tp);    
     set_k_time(tp);
 
-	Julian j(2319,1,7);
-
-	Gregorian g(j);
-
-	Julian jj (j);
-
-	jj = g;
+	Julian j(1913, 4, 8);
 
 	cout << j << endl;
+	Julian j2 = Gregorian(j);
 
-	cout << g << endl;
-
-	cout << jj << endl;
-
-	
-	
+	cout << j2 << endl;
 
 
+	// dates.push_back(new D(*const_cast<const Date*>(dates[idx])));
 
 }

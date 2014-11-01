@@ -21,7 +21,6 @@ Gregorian::Gregorian() {
 }
 
 Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
-
 	if (!is_valid_date(year,month,day)) {
 		throw std::out_of_range("invalid date");
 	}
@@ -29,6 +28,7 @@ Gregorian::Gregorian(int year, int month, int day) : IsoDate(year, month, day) {
 }
 
 Gregorian::Gregorian(const Date & date) {
+
 	JD_set_date(date.mod_julian_day());
 }
 
