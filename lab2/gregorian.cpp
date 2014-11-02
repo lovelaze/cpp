@@ -33,7 +33,11 @@ Gregorian::Gregorian(const Date & date) {
 }
 
 Gregorian::Gregorian(const Date * datep) {
-	JD_set_date(datep->mod_julian_day());
+	if (datep == 0) {
+
+	} else {
+		JD_set_date(datep->mod_julian_day());
+	}
 
 }
 
