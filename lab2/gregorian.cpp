@@ -37,16 +37,6 @@ Gregorian::Gregorian(const Date * datep) {
 
 }
 
-Gregorian & Gregorian::operator=(const Date & date) {
-
-	if (this == &date) return *this;
-
-
-	JD_set_date(date.mod_julian_day());
-
-	return *this;
-}
-
 
 bool Gregorian::is_leap_year() const {
 	return (year() % 4 == 0) && (year() % 100 != 0 || year() % 400 == 0);

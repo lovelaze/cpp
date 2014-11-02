@@ -29,14 +29,6 @@ Julian::Julian(const Date * datep) {
 	JD_set_date(datep->mod_julian_day());
 }
 
-Julian & Julian::operator=(const Date & date) {
-	if (this == &date) return *this;
-
-	JD_set_date(date.mod_julian_day());
-	return *this;
-}
-
-
 
 bool Julian::is_leap_year() const {
 	return !(year() % 4);

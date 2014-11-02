@@ -13,15 +13,12 @@ public:
 	Julian(const Date &);
 	Julian(const Date *);
 
-	Julian & operator=(const Date &);
-
 	int mod_julian_day() const;
 
+	using Date::operator++;
+	using Date::operator--;
 	Julian operator++(int);
 	Julian operator--(int);
-
-	Julian & operator++() {Date::operator++(); return *this;};
-	Julian & operator--() {Date::operator--(); return *this;};
 
 	void JD_set_date(int);
 

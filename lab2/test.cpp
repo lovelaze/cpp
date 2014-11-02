@@ -15,14 +15,59 @@ int main() {
     time(&tp);    
     set_k_time(tp);
 
-	Julian j(1913, 4, 8);
+    Gregorian g(1995, 06, 19);
+    cout << "g = " << g << endl;
 
-	cout << j << endl;
-	Julian j2 = Gregorian(j);
+    Gregorian g2 = ++g;
+    g2 = g;
+    cout << "g2 = " << g2 << endl;
+ 
 
-	cout << j2 << endl;
+    
 
 
-	// dates.push_back(new D(*const_cast<const Date*>(dates[idx])));
+    
+	{
+		Julian j(1995, 12, 19);
+		j.add_month(-3);
+		cout << "j = " << j << endl;
+		j = Julian(j);
+		cout << "j = " << j << endl;
+		j = Gregorian(j);
+		cout << "j = " << j << endl;
 
+		Gregorian j2 = Julian(j);
+		j2 = Julian(j);
+		cout << "j2 = " << j2 << endl;
+		j2 = Julian(j);
+		cout << "j2 = " << j2 << endl;
+	}
+
+	{
+		Gregorian g(1995, 12, 19);
+		g.add_month(-3);
+		cout << "g = " << g << endl;
+		g = Julian(g);
+		cout << "g = " << g << endl;
+		g = Gregorian(g);
+		cout << "g = " << g << endl;
+
+		Julian g2 = Gregorian(g);
+		g2 = Gregorian(g);
+		cout << "g2 = " << g2 << endl;
+		g2 = Julian(g);
+		cout << "g2 = " << g2 << endl;
+	}
+
+	{
+		Gregorian * p = new Gregorian(1995, 12, 19);
+		cout << "*p = " << *p << endl;
+		Julian g(p);
+		cout << "g = " << g << endl;
+		delete p;
+	}
+
+
+	
+	return 0;
 }

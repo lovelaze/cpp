@@ -11,9 +11,6 @@ protected:
 	int year_;			// current year
 	int month_;			// current month
 	int day_;			// current day
-
-	
-
 	int daysPerWeek_;	// days per week
 	int monthsPerYear_;	// months per year
 
@@ -21,10 +18,8 @@ protected:
 public:
 	Date();
 	Date(int year, int month, int day, int daysPerWeek, int monthsPerYear);
-	
 
 	virtual ~Date();
-
 
 	/** FUNCTIONS **/
 
@@ -76,15 +71,11 @@ public:
 	bool operator>(const Date & date) const;
 	bool operator>=(const Date & date) const;
 
-
-
 	// add years
 	virtual Date & add_year(const int n = 1) = 0;
 
 	// add months
 	virtual Date & add_month(const int n = 1) = 0;
-
-
 
 };
 
