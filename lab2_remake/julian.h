@@ -12,6 +12,7 @@ protected:
 
 public:
 	Julian();
+	Julian(int mjdn);
 	Julian(int year, int month, int day);
 	Julian(const Date &);
 	Julian(const Date *);

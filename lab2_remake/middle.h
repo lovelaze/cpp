@@ -17,6 +17,7 @@ public:
 
 	// CONSTRUCTORS
 	Middle();
+	Middle(int mjdn);
 	Middle(int year, int month, int day);
 
 

@@ -19,6 +19,7 @@ public:
 
 	// CONSTRUCTORS
 	Date();
+	Date(int mjdn);
 	Date(int year, int month, int day, int dpw, int mpy);
 	Date(const Date *);
 	Date(const Date &); 

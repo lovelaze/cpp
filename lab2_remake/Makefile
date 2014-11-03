@@ -29,6 +29,13 @@ run22c:
 	cat lab22c.in | ./test.out > utdata.txt
 	diff utdata.txt lab22c.out | less
 
+test23:
+	$(CXX) -std=gnu++0x -Wall -g cprog09lab23.cpp date.cpp middle.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
+
+run23:
+	cat lab23.in | ./test.out > utdata.txt
+	diff utdata.txt lab23.out | less
+
 testcal:
 	$(CXX) -std=gnu++0x -Wall -g caltest.cpp date.cpp middle.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
 runcal:

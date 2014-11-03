@@ -12,6 +12,7 @@ protected:
 
 public:
 	Gregorian();
+	Gregorian(int mjdn);
 	Gregorian(int year, int month, int day);
 	Gregorian(const Date &);
 	Gregorian(const Date *);

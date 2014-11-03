@@ -7,6 +7,10 @@ Date::Date() : currYear_(0), currMonth_(0), currDay_(0), daysPerWeek_(0), months
 
 }
 
+Date::Date(int mjdn) {
+
+}
+
 Date::Date(int year, int month, int day, int dpw, int mpy) : currYear_(year), currMonth_(month), currDay_(day), daysPerWeek_(dpw), monthsPerYear_(mpy) {
 
 }

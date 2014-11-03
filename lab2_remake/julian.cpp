@@ -16,6 +16,12 @@ Julian::Julian() {
 
 }
 
+Julian::Julian(int mjdn) {
+	daysPerWeek_= 7;
+    monthsPerYear_ = 12;
+	MJD_set_date(mjdn);
+}
+
 Julian::Julian(int year, int month, int day) : Middle(year, month, day) {
 	if (!is_valid_date()) {
 		throw std::out_of_range("invalid date");

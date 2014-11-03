@@ -14,6 +14,10 @@ Middle::Middle() : Date() {
 
 }
 
+Middle::Middle(int mjdn) {
+
+}
+
 Middle::Middle(int year, int month, int day) : Date(year, month, day, 7, 12) {
 
 }

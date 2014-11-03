@@ -14,9 +14,7 @@ class Calendar {
 
 public:
 	T currentDate_;
-	std::map<T, std::vector<std::string>> events_;
- 	
- 	bool event_exists(T t, std::string message);
+	std::map<int, std::vector<std::string>> events_; // inten motsvarar en dag, i mjdn
 
 public:
 	//friend class Calendar<Julian>;
@@ -34,8 +32,16 @@ public:
 
 
 	bool set_date(int year, int month, int day);
-	bool add_event(std::string message, int year=0, int month=0, int day=0);
-	bool remove_event(std::string message, int year=0, int month=0, int day=0);
+
+	bool add_event(std::string message);
+	bool add_event(std::string messsage, int day);
+	bool add_event(std::string messsage, int day, int month);
+	bool add_event(std::string message, int day, int month, int year);
+
+	bool remove_event(std::string message);
+	bool remove_event(std::string messsage, int day);
+	bool remove_event(std::string messsage, int day, int month);
+	bool remove_event(std::string message, int day, int month, int year);
 
 };
 }
