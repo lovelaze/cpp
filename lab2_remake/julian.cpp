@@ -30,6 +30,17 @@ Julian::Julian(const Date * datep) : Middle(0,0,0) {
 	MJD_set_date(datep->mod_julian_day());
 }
 
+Julian & Julian::operator=(const Date & date) {
+	if (this != &date) {
+		daysPerWeek_ = date.days_per_week();
+		monthsPerYear_ = date.months_per_year();
+		MJD_set_date(date.mod_julian_day());
+	}
+	
+
+	return *this;
+}
+
 
 bool Julian::is_leap_year() const {
 	return !(year() % 4);

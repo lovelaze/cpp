@@ -1,4 +1,4 @@
-CXX = clang++-3.5
+CXX = g++
 
 all: test
 
@@ -28,6 +28,12 @@ test22c:
 run22c:
 	cat lab22c.in | ./test.out > utdata.txt
 	diff utdata.txt lab22c.out | less
+
+testcal:
+	$(CXX) -std=gnu++0x -Wall -g caltest.cpp date.cpp middle.cpp gregorian.cpp julian.cpp kattistime.cpp -o test.out
+runcal:
+	./test.out
+
 
 .PHONY: clean run
 

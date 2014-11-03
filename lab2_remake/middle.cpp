@@ -19,11 +19,7 @@ Middle::Middle(int year, int month, int day) : Date(year, month, day, 7, 12) {
 }
 
 int Middle::days_this_month() const {
-	//if (currMonth_ == 2 && is_leap_year()) return 29;
-	//return days_month[currMonth_ - 1];
-
-	//int month = ((this->month() -1) % 12) +1;
-
+	
 	if(month() == 1 || month() == 3 || month() == 5 || month() == 7 || month() == 8 || month() == 10 || month() == 12) {
 		return 31;
 	} else if(month() == 4 || month() == 6 || month() == 9 || month() == 11) {
@@ -41,8 +37,7 @@ int Middle::days_this_month() const {
 }
 
 std::string Middle::week_day_name() const {
-	//return Middle::days[week_day() - 1];
-
+	
 	if(week_day() == 1) {
     	return std::string("monday");
 	} else if(week_day() == 2) {
@@ -61,10 +56,11 @@ std::string Middle::week_day_name() const {
 
 	throw std::out_of_range("week_day_name out of range");
 
+
 }
 
 std::string Middle::month_name() const {
-
+	
 	if(month() == 1) {
 		return std::string("january");
 	} else if(month() == 2) {
@@ -94,7 +90,7 @@ std::string Middle::month_name() const {
 	throw std::out_of_range("month_name out of range");
 
 
-	//return Middle::months[currMonth_ - 1];
+
 }
 
 
@@ -112,7 +108,6 @@ Date & Middle::add_year(int n) {
 			currDay_ = 28;
 		}
 	}
-
 	
 	return *this;
 }

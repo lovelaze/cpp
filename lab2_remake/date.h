@@ -20,8 +20,10 @@ public:
 	// CONSTRUCTORS
 	Date();
 	Date(int year, int month, int day, int dpw, int mpy);
-	//Date(const Date *);
-	//Date(const Date &); 
+	Date(const Date *);
+	Date(const Date &); 
+
+	virtual Date & operator=(const Date &);
 
 	virtual ~Date();
 
