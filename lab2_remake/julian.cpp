@@ -30,6 +30,7 @@ Julian::Julian(const Date * datep) : Middle(0,0,0) {
 	MJD_set_date(datep->mod_julian_day());
 }
 
+
 Julian & Julian::operator=(const Date & date) {
 	if (this != &date) {
 		daysPerWeek_ = date.days_per_week();

@@ -32,11 +32,12 @@ int Middle::days_this_month() const {
 		return 28;
 	}
 
-  throw std::out_of_range("Illegal month");
+	throw std::out_of_range("Illegal month");
 
 }
 
 std::string Middle::week_day_name() const {
+	
 	
 	if(week_day() == 1) {
     	return std::string("monday");
@@ -54,8 +55,7 @@ std::string Middle::week_day_name() const {
 	    return std::string("sunday");
 	} 
 
-	throw std::out_of_range("week_day_name out of range");
-
+	throw std::out_of_range("week_day_name out of range");	
 
 }
 
@@ -88,8 +88,6 @@ std::string Middle::month_name() const {
 	}
 
 	throw std::out_of_range("month_name out of range");
-
-
 
 }
 

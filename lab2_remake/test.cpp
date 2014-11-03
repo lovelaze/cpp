@@ -16,9 +16,17 @@ int main() {
     time(&tp);    
     set_k_time(tp);
 
+    for (int i = 1000; i < 2500; ++i) {
+    	for (int j = 1; j< 28; ++j) {
+    		Gregorian g = Gregorian(i, 1, j);
+    		assert(g.week_day() >= 0);
+    		assert(g.week_day_name().length() > 0);
+    		assert(g.month_name().length() > 0);
+    	}
+
+    }
     
-    Gregorian g = Gregorian(1857, 1, 1);
-    cout << g.week_day() << endl;
+    
 
     
    

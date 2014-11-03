@@ -20,6 +20,7 @@ Date::Date(const Date & date) {
 	//MJD_set_date(date.mod_julian_day());
 }
 
+
 Date & Date::operator=(const Date & date) {
 	if (this != &date) {
 		currYear_ = date.currYear_;
@@ -31,6 +32,7 @@ Date & Date::operator=(const Date & date) {
 
 	return *this;
 }
+
 
 Date::~Date() {
 

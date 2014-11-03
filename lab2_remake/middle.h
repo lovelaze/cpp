@@ -2,6 +2,8 @@
 #define MIDDLE_H
 
 #include "date.h"
+#include <vector>
+#include <string>
 
 namespace lab2 {
 
@@ -30,9 +32,9 @@ public:
 	virtual int mod_julian_day() const = 0;
 
 private:
-	//static std::vector<int> days_month;
-	//static std::vector<std::string> days; 
-	//static std::vector<std::string> months;;
+	static std::vector<int> days_month;
+	static std::vector<std::string> days; 
+	static std::vector<std::string> months;;
 
 };
 
