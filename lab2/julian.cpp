@@ -1,7 +1,5 @@
 #include "julian.h"
-#include "kattistime.h"
 #include "gregorian.h"
-#include <iostream>
 #include <stdexcept>
 
 using namespace lab2;
@@ -11,22 +9,43 @@ Julian::Julian() {
 
 	int mjd = g.mod_julian_day();
 
-	JD_set_date(mjd);
+	MJD_set_date(mjd);
+
+	daysPerWeek_= 7;
+    monthsPerYear_ = 12;
 
 }
 
-Julian::Julian(int year, int month, int day) : IsoDate(year, month, day) {
-	if (!is_valid_date(year,month,day)) {
+Julian::Julian(int mjdn) {
+	daysPerWeek_= 7;
+    monthsPerYear_ = 12;
+	MJD_set_date(mjdn);
+}
+
+Julian::Julian(int year, int month, int day) : Middle(year, month, day) {
+	if (!is_valid_date()) {
 		throw std::out_of_range("invalid date");
 	}
 }
 
-Julian::Julian(const Date & date) {
-	JD_set_date(date.mod_julian_day());
+Julian::Julian(const Date & date) : Middle(0,0,0) {
+	MJD_set_date(date.mod_julian_day());
 }
 
-Julian::Julian(const Date * datep) {
-	JD_set_date(datep->mod_julian_day());
+Julian::Julian(const Date * datep) : Middle(0,0,0) {
+	MJD_set_date(datep->mod_julian_day());
+}
+
+
+Julian & Julian::operator=(const Date & date) {
+	if (this != &date) {
+		daysPerWeek_ = date.days_per_week();
+		monthsPerYear_ = date.months_per_year();
+		MJD_set_date(date.mod_julian_day());
+	}
+	
+
+	return *this;
 }
 
 
@@ -42,8 +61,17 @@ int Julian::mod_julian_day() const {
   	int y = year() + 4800 - a;
   	int m = month() + 12 * a - 3;
 
-  	double jdn = day() + (153 * m + 2) / 5 + 365 * y + y / 4 -32083;
-  	return jdn - 2400000.5;
+//  	double jdn = day() + (153 * m + 2) / 5 + 365 * y + y / 4 -32083;
+//  	return jdn - 2400000.5;
+  	int jdn = day() + (153 * m + 2) / 5 + 365 * y + y / 4 -32083;
+
+  	double mjdn = jdn - 2400000.5;
+
+  	if(mjdn < 0) {
+        mjdn--;
+    }
+
+  	return mjdn;
 }
  
 
@@ -61,7 +89,7 @@ Julian Julian::operator--(int) {
 	return g;
 }
 
-void Julian::JD_set_date(int mjd) {
+void Julian::MJD_set_date(int mjd) {
 
 	int jdn = mjd + 2400000.5 + 0.5;
 
@@ -76,7 +104,7 @@ void Julian::JD_set_date(int mjd) {
   	int month = m + 3 - 12 * (int)(m/10);
   	int year = 100*b + d - 4800 + (int)(m/10);
 
- 	day_ = day;
-  	month_ = month;
-  	year_ = year;
+ 	currDay_ = day;
+  	currMonth_ = month;
+  	currYear_ = year;
 }

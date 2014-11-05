@@ -34,15 +34,18 @@ public:
 	bool set_date(int year, int month, int day);
 
 	bool add_event(std::string message);
-	bool add_event(std::string messsage, int day);
-	bool add_event(std::string messsage, int day, int month);
+	bool add_event(std::string message, int day);
+	bool add_event(std::string message, int day, int month);
 	bool add_event(std::string message, int day, int month, int year);
 
 	bool remove_event(std::string message);
-	bool remove_event(std::string messsage, int day);
-	bool remove_event(std::string messsage, int day, int month);
+	bool remove_event(std::string message, int day);
+	bool remove_event(std::string message, int day, int month);
 	bool remove_event(std::string message, int day, int month, int year);
 
+private:
+	std::string & event_exists(T date, std::string message);
+	std::string & event_exists(int day, int month, int year, std::string message);
 };
 }
 

@@ -1,38 +1,58 @@
-#include <iostream>
-#include <string>
 #include "date.h"
+#include <iostream>
 
 using namespace lab2;
 
-
-/** CONSTRUCTORS **/
-Date::Date() : year_(0), month_(0), day_(0), daysPerWeek_(0), monthsPerYear_(0) {
-}
-
-Date::Date(int year, int month, int day, int dpw, int mpy) : year_(year), month_(month), day_(day), daysPerWeek_(dpw), monthsPerYear_(mpy) {
+Date::Date() : currYear_(0), currMonth_(0), currDay_(0), daysPerWeek_(0), monthsPerYear_(0) {
 
 }
+
+Date::Date(int mjdn) {
+
+}
+
+Date::Date(int year, int month, int day, int dpw, int mpy) : currYear_(year), currMonth_(month), currDay_(day), daysPerWeek_(dpw), monthsPerYear_(mpy) {
+
+}
+
+
+Date::Date(const Date * date) {
+	//MJD_set_date(date->mod_julian_day());
+}
+
+Date::Date(const Date & date) {
+	//MJD_set_date(date.mod_julian_day());
+}
+
+
+Date & Date::operator=(const Date & date) {
+	if (this != &date) {
+		currYear_ = date.currYear_;
+		currMonth_ = date.currMonth_;
+		currDay_ = date.currDay_;
+		daysPerWeek_ = date.daysPerWeek_;
+		monthsPerYear_ = date.monthsPerYear_;
+	}
+
+	return *this;
+}
+
 
 Date::~Date() {
 
 }
 
-
-/** FUNCTIONS **/
-
 int Date::year() const {
-	return year_;
-
+	return currYear_;
 }
 
 int Date::month() const {
-	return month_;
+	return currMonth_;
 }
 
 int Date::day() const {
-	return day_;
+	return currDay_;
 }
-
 
 int Date::days_per_week() const {
 	return daysPerWeek_;
@@ -42,96 +62,95 @@ int Date::months_per_year() const {
 	return monthsPerYear_;
 }
 
+int Date::week_day() const {
 
-bool Date::operator==(const Date & date) const {
-	return mod_julian_day() == date.mod_julian_day();
-}
+	return	((mod_julian_day()+2)%days_per_week()+days_per_week())%days_per_week() + 1;
 
-bool Date::operator!=(const Date & date) const {
-	return mod_julian_day() != date.mod_julian_day();
-}
 
-bool Date::operator<(const Date & date) const {
-	return mod_julian_day() < date.mod_julian_day();
-}
-
-bool Date::operator<=(const Date & date) const {
-	return mod_julian_day() <= date.mod_julian_day();
+	//return ((mod_julian_day()+2) % days_per_week()) + 1;
 }
 
 
-bool Date::operator>(const Date & date) const {
-	return mod_julian_day() > date.mod_julian_day();
-}
-
-bool Date::operator>=(const Date & date) const {
-	return mod_julian_day() >= date.mod_julian_day();
-}
-
-
-// prefix ++, add one day
-Date & Date::operator++() {
-	this->operator+=(1);
+// TODO
+Date & Date::operator++ () {
+	(*this)+=1;
 	return *this;
 }
 
-// prefix --, remove one day
-Date & Date::operator--() {
-	this->operator-=(1);
+// TODO
+Date & Date::operator-- () {
+	(*this)-=1;
 	return *this;
 }
 
-// +=, add days
-Date & Date::operator+=(const int i) {
+// TODO
+Date & Date::operator+= (int i) {
 
 	if (i < 0 ) {
 		Date::operator-=(-i);
 	} else {
 		for (int day=i; day > 0; --day) {
 
-			++day_;
+			++currDay_;
 
-			if (day_ > days_this_month()) {
-				day_ = 1;
+			if (currDay_ > days_this_month()) {
+				currDay_ = 1;
 				add_month();
 			}
 		}
 	}
 
-	
-
 	return *this;
 }
 
-// -=, remove days
-Date & Date::operator-=(const int i) {
+// TODO
+Date & Date::operator-= (int i) {
+
 	if( i < 0) {
 		Date::operator+=(-i);
 	} else {
 		for (int day=i; day > 0; --day) {
 
-			--day_;
+			--currDay_;
 
-		    if (day_ < 1) {
-			    add_month(-1);
-		    	day_ = days_this_month();
+		    if (currDay_ < 1) {
+ 			    add_month(-1);
+		    	currDay_ = days_this_month();
 		    }
 
 		}
 	}
-	
-	
 
 	return *this;
 }
 
-// -, difference between dates
-int Date::operator-(const Date & date) const {
-
-	return this->mod_julian_day() - date.mod_julian_day();
+bool Date::operator== (const Date & date) const {
+	return mod_julian_day() == date.mod_julian_day();
 }
 
+bool Date::operator!= (const Date & date) const {
+	return mod_julian_day() != date.mod_julian_day();
+}
 
+bool Date::operator< (const Date & date) const {
+	return mod_julian_day() < date.mod_julian_day();
+}
+
+bool Date::operator> (const Date & date) const {
+	return mod_julian_day() > date.mod_julian_day();
+}
+
+bool Date::operator<= (const Date & date) const {
+	return mod_julian_day() <= date.mod_julian_day();
+}
+
+bool Date::operator>= (const Date & date) const {
+	return mod_julian_day() >= date.mod_julian_day();
+}
+
+int Date::operator- (const Date & date) const {
+	return mod_julian_day() - date.mod_julian_day();
+}
 
 
 std::ostream & operator<<(std::ostream & os, const Date & date) {
@@ -151,10 +170,9 @@ std::ostream & operator<<(std::ostream & os, const Date & date) {
 }
 
 void Date::debug() {
-	std::cout << "day_ = " << day_ << std::endl;
-	std::cout << "month_ = " << month_ << std::endl;
-	std::cout << "year_ = " << year_ << std::endl;
-	std::cout << "daysPerWeek_ = " << daysPerWeek_ << std::endl;
-	std::cout << "monthsPerYear_ = " << monthsPerYear_ << std::endl;
-	
+	std::cout << "day = " << currDay_ << std::endl;
+	std::cout << "month = " << currMonth_ << std::endl;
+	std::cout << "year = " << currYear_ << std::endl;
+	std::cout << "dpw = " << daysPerWeek_ << std::endl;
+	std::cout << "mpy = " << monthsPerYear_ << std::endl;
 }

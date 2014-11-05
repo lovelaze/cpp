@@ -54,6 +54,7 @@ int main()
 
 
     std::cout << "Testing constructors..." << std::endl;
+    j.debug();
     assert(today.year() == year &&          // rätt initierad
            today.month() == month &&
            today.day() == day);
@@ -63,7 +64,6 @@ int main()
 
 
     std::cout << "Testing access..." << std::endl;
-    j.debug();
     assert(g.days_per_week() == 7);         // rätt antal dagar per vecka
     assert(j.days_per_week() == 7);         // rätt antal dagar per vecka
     assert(g.days_this_month() == 31);      // rätt antal dagar denna månad

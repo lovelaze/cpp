@@ -1,28 +1,31 @@
 #ifndef GREGORIAN_H
 #define GREGORIAN_H
 
-#include "isodate.h"
+#include "middle.h"
 
 namespace lab2 {
 
-class Gregorian : public IsoDate {
+class Gregorian : public Middle {
+
+protected:
+	virtual bool is_leap_year() const;
 
 public:
 	Gregorian();
+	Gregorian(int mjdn);
 	Gregorian(int year, int month, int day);
 	Gregorian(const Date &);
 	Gregorian(const Date *);
 
-	int mod_julian_day() const;
+	Gregorian & operator=(const Date & date);
 
 	using Date::operator++;
 	using Date::operator--;
 	Gregorian operator++(int);
 	Gregorian operator--(int);
 
-	void JD_set_date(int);
-
-	bool is_leap_year() const;
+	int mod_julian_day() const;
+	void MJD_set_date(int);
 
 };
 

@@ -76,19 +76,10 @@ bool Calendar<T>::add_event(std::string message, int day, int month, int year) {
 		T t(year, month, day);
 		std::vector<std::string> & tmp = events_[t.mod_julian_day()];
 		
-		//bool exists = (std::find(tmp.begin(), tmp.end(), message) != tmp.end());
+		bool exists = (std::find(tmp.begin(), tmp.end(), message) != tmp.end());
+		if (exists) return false;
 
-		//if (exists) return false;
-
-		//tmp.push_back(message); 
-
-		for(auto it = tmp.begin(); it != tmp.end(); ++it) {
-			if (*it == message) {
-				return false;
-			}
-		}
-
-		tmp.push_back(message);
+		tmp.push_back(message); 
 		return true;
 		
 	} catch (std::out_of_range & e) {
@@ -118,19 +109,13 @@ bool Calendar<T>::remove_event(std::string message, int day, int month, int year
 		T t(year, month, day);
 		std::vector<std::string> & tmp = events_[t.mod_julian_day()];
 
-		/*auto ptr = std::find(tmp.begin(), tmp.end(), message);
+		auto ptr = std::find(tmp.begin(), tmp.end(), message);
 
 		if (ptr != tmp.end()) { // event exists
 			tmp.erase(ptr);
 			return true;
-		}*/
-
-		for(auto it = tmp.begin(); it != tmp.end(); ++it) {
-			if (*it == message) {
-				tmp.erase(it);
-				return true;
-			}
 		}
+
 
 		return false;
 		
@@ -138,6 +123,7 @@ bool Calendar<T>::remove_event(std::string message, int day, int month, int year
 		return false;
 	}
 }
+
 
 template<class T>
 std::ostream & operator<<(std::ostream & os, const Calendar<T> & cal) {
