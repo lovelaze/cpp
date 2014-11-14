@@ -112,7 +112,7 @@ Matrix& Matrix::transpose( ) {
 
 */
 
-void Matrix::add_row(matrix_row & row) {
+void Matrix::add_row(matrix_row row) {
 	if (row.size() != m_cols) {
 		throw std::invalid_argument("the row must have correct dimension");
 	}
@@ -134,12 +134,43 @@ const Matrix::matrix_row& Matrix::operator[]( const index i ) const {
 
 // Användaren matar in [ 1 2 -3 ; 5 6 7 ]
 std::istream& operator>> ( std::istream& is, Matrix& matrix) {
+	
 	std::string input;
 	std::getline(is, input);
+
+	Matrix::matrix_row temp_row;
+
+	input.erase(0, 1);
+	input.pop_back();
+
+	size_t pos = 0;
+	std::string token;
+
+	while (token != input){
+		token = input.substr(0, input.find_first_of(";"));
+		input = input.substr(input.find_first_of(";") + 1);
+
+
+		stringstream ss(token);
+		int n;
+		while (ss >> n) {
+			temp_row.push_back(n);
+		}
+		matrix.add_row(temp_row);
+		temp_row.clear();
+
+	}
+
+
+
+
+
+	
+	/*
 	input.erase(0, 1);
 	input.erase(input.length()-1, input.length());
 
-	Matrix::matrix_row temp_row;
+	
 
 	for (char & c : input) {
 		if (isdigit(c)) {
@@ -152,8 +183,8 @@ std::istream& operator>> ( std::istream& is, Matrix& matrix) {
 		}
 	}
 
-
-	std::cerr << input << std::endl;
+	*/
+	//std::cerr << input << std::endl;
 
 	
 	return is;
@@ -161,6 +192,12 @@ std::istream& operator>> ( std::istream& is, Matrix& matrix) {
 
 
 std::ostream& operator<< ( std::ostream& os, Matrix& matrix) {
+
+	if (matrix.m_rows <= 0) {
+		os << "[ ]";
+		return os;
+	}
+
 	os << "[ ";
 		
 	for (Matrix::index i = 0; i < matrix.m_rows - 1; ++i) {

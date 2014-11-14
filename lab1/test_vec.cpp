@@ -15,7 +15,7 @@ void printVector(UIntVector & v) {
 
 
 
-
+/*
 int main()
 {
     
@@ -42,6 +42,7 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
+	
     
 #if 1
     // Diverse saker att testa
@@ -54,3 +55,4 @@ int main()
 
     return 0;
 }
+*/

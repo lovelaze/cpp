@@ -28,11 +28,12 @@ int main() {
 	
 	Matrix x;
 
-	//std::cin >> x;
-	//std::cout << x << std::endl;
+	std::cin >> x;
+	std::cout << x << std::endl;
 
+	cin.get();
 	
 
 
 	return 0;
-}
+} 

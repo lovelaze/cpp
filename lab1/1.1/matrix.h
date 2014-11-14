@@ -1,7 +1,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
-//#include "../Vector.h"
-#include "../kth_cprog_template_container.hpp"
+#include "../Vector.h"
 
 #define private public
 
@@ -56,7 +55,7 @@ public:
     std::size_t                 m_cols;
     Vector< matrix_row >        m_vectors;
     
-    void add_row( matrix_row &);            // Non mandatory help function
+    void add_row( matrix_row );            // Non mandatory help function
     friend std::istream& operator>> ( std::istream&, Matrix& );
 };
 
