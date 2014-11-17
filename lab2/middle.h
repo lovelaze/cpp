@@ -13,6 +13,8 @@ protected:
 	virtual bool is_leap_year() const = 0;
 	bool is_valid_date() const;
 
+	virtual void MJD_set_date(int) = 0;
+
 public:
 
 	// CONSTRUCTORS
@@ -20,7 +22,10 @@ public:
 	Middle(int mjdn);
 	Middle(int year, int month, int day);
 
+	virtual ~Middle();
 
+	virtual Middle & operator=(const Date & date);
+	
 
 	// FUNCTIONS
 	virtual int days_this_month() const;
@@ -30,12 +35,10 @@ public:
 	virtual Date & add_year(int n = 1);
 	virtual Date & add_month(int n = 1);
 
+	
 	virtual int mod_julian_day() const = 0;
 
-private:
-	static std::vector<int> days_month;
-	static std::vector<std::string> days; 
-	static std::vector<std::string> months;;
+
 
 };
 

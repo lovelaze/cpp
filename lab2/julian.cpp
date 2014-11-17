@@ -61,8 +61,6 @@ int Julian::mod_julian_day() const {
   	int y = year() + 4800 - a;
   	int m = month() + 12 * a - 3;
 
-//  	double jdn = day() + (153 * m + 2) / 5 + 365 * y + y / 4 -32083;
-//  	return jdn - 2400000.5;
   	int jdn = day() + (153 * m + 2) / 5 + 365 * y + y / 4 -32083;
 
   	double mjdn = jdn - 2400000.5;
@@ -75,14 +73,12 @@ int Julian::mod_julian_day() const {
 }
  
 
-//TODO
 Julian Julian::operator++(int) {
 	Julian g(this);
 	++(*this);
 	return g;
 }
 
-//TODO
 Julian Julian::operator--(int) {
     Julian g(this);
 	--(*this);

@@ -15,18 +15,21 @@ protected:
 	int daysPerWeek_;
 	int monthsPerYear_;
 
+	virtual void MJD_set_date(int) = 0;
+	
+
 public:
 
 	// CONSTRUCTORS
 	Date();
 	Date(int mjdn);
-	Date(int year, int month, int day, int dpw, int mpy);
-	Date(const Date *);
-	Date(const Date &); 
-
-	virtual Date & operator=(const Date &);
+	Date(int year, int month, int day, int dpw, int mpy); 
 
 	virtual ~Date();
+
+	virtual Date & operator=(const Date & date);
+
+
 
 	// FUNCTIONS
 	int year() const;
@@ -42,10 +45,10 @@ public:
 	virtual std::string week_day_name() const = 0;
 	virtual std::string month_name() const = 0;
 
-	virtual int mod_julian_day() const = 0;
-
 	virtual Date & add_year(int n = 1) = 0;
 	virtual Date & add_month(int n = 1) = 0;
+
+	virtual int mod_julian_day() const = 0;
 
 
 	// OPERATORS
@@ -61,12 +64,14 @@ public:
 	bool operator>= (const Date &) const;
 	int operator- (const Date &) const;
 
-	void debug();
+	void debug() const;
 
 };
 
 }
 
-std::ostream & operator<<(std::ostream & os, const lab2::Date & date);
+std::ostream & operator<<(std::ostream & os, const lab2::Date & date) ;
+
+
 
 #endif

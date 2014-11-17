@@ -25,6 +25,7 @@ Calendar<T>::Calendar(const Calendar<T2> & cal) {
 	events_ = cal.events_;
 }
 
+
 template<class T>
 Calendar<T> & Calendar<T>::operator=(const Calendar<T> & cal) {
 	currentDate_ = cal.currentDate_;
@@ -35,7 +36,6 @@ Calendar<T> & Calendar<T>::operator=(const Calendar<T> & cal) {
 template<class T>
 template<class T2>
 Calendar<T> & Calendar<T>::operator=(const Calendar<T2> & cal) {
-
 	currentDate_ = cal.currentDate_;
 	events_ = cal.events_;
 	return *this;

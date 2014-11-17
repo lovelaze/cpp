@@ -4,28 +4,31 @@
 #include "kattistime.h"
 #include <cassert>
 
-using namespace lab2;
 using namespace std;
+
+struct A {
+    virtual A & operator=(const A &) = 0; 
+
+};
+
+struct B : A{
+    virtual A & operator=(const A &) = 0;
+};
+
+struct C : B{
+    virtual C & operator=(const A &) {
+        return *this;
+    };
+
+};
 
 
 int main() {
 
+    C c;
 
 
-	time_t tp;
-    time(&tp);    
-    set_k_time(tp);
-
-    for (int i = 1000; i < 2500; ++i) {
-    	for (int j = 1; j< 28; ++j) {
-    		Gregorian g = Gregorian(i, 1, j);
-    		assert(g.week_day() >= 0);
-    		assert(g.week_day_name().length() > 0);
-    		assert(g.month_name().length() > 0);
-    	}
-
-    }
-    
+	
     
 
     

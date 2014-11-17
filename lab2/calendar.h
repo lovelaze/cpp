@@ -17,8 +17,6 @@ public:
 	std::map<int, std::vector<std::string>> events_; // inten motsvarar en dag, i mjdn
 
 public:
-	//friend class Calendar<Julian>;
-	//friend class Calendar<Gregorian>;
 
 	Calendar();
 

@@ -14,6 +14,8 @@
 // fullständiga
 
 
+using namespace std;
+
 int main()
 {
     using namespace lab2;        // Exponera funktionalitet i namnrymden lab2
@@ -363,6 +365,13 @@ int main()
 
     
     std::cout << std::endl << "All tests were successful." << std::endl;
+
+
+    Julian j1(2319,01,7);
+    cout << j1 << endl;
+    Gregorian g1;
+    g1 = j1;
+    cout << g1 << endl;
 
 
     // följande ska inte gå att kompilera

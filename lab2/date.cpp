@@ -15,23 +15,11 @@ Date::Date(int year, int month, int day, int dpw, int mpy) : currYear_(year), cu
 
 }
 
-
-Date::Date(const Date * date) {
-	//MJD_set_date(date->mod_julian_day());
-}
-
-Date::Date(const Date & date) {
-	//MJD_set_date(date.mod_julian_day());
-}
-
-
 Date & Date::operator=(const Date & date) {
 	if (this != &date) {
-		currYear_ = date.currYear_;
-		currMonth_ = date.currMonth_;
-		currDay_ = date.currDay_;
-		daysPerWeek_ = date.daysPerWeek_;
-		monthsPerYear_ = date.monthsPerYear_;
+		daysPerWeek_ = date.days_per_week();
+		monthsPerYear_ = date.months_per_year();
+		MJD_set_date(date.mod_julian_day());
 	}
 
 	return *this;
@@ -65,25 +53,20 @@ int Date::months_per_year() const {
 int Date::week_day() const {
 
 	return	((mod_julian_day()+2)%days_per_week()+days_per_week())%days_per_week() + 1;
-
-
 	//return ((mod_julian_day()+2) % days_per_week()) + 1;
 }
 
 
-// TODO
 Date & Date::operator++ () {
 	(*this)+=1;
 	return *this;
 }
 
-// TODO
 Date & Date::operator-- () {
 	(*this)-=1;
 	return *this;
 }
 
-// TODO
 Date & Date::operator+= (int i) {
 
 	if (i < 0 ) {
@@ -103,7 +86,6 @@ Date & Date::operator+= (int i) {
 	return *this;
 }
 
-// TODO
 Date & Date::operator-= (int i) {
 
 	if( i < 0) {
@@ -169,7 +151,7 @@ std::ostream & operator<<(std::ostream & os, const Date & date) {
 	return os;
 }
 
-void Date::debug() {
+void Date::debug() const {
 	std::cout << "day = " << currDay_ << std::endl;
 	std::cout << "month = " << currMonth_ << std::endl;
 	std::cout << "year = " << currYear_ << std::endl;

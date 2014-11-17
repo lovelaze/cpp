@@ -10,6 +10,8 @@ class Julian : public Middle {
 protected:
 	virtual bool is_leap_year() const;
 
+	virtual void MJD_set_date(int);
+
 public:
 	Julian();
 	Julian(int mjdn);
@@ -25,7 +27,8 @@ public:
 	Julian operator--(int);
 
 	int mod_julian_day() const;
-	void MJD_set_date(int);
+
+	
 
 
 };

@@ -1,4 +1,4 @@
-CXX = g++
+CXX = clang++-3.5
 
 all: test
 

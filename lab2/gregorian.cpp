@@ -31,12 +31,10 @@ Gregorian::Gregorian(int year, int month, int day) : Middle(year, month, day) {
 
 }
 
-// TODO
 Gregorian::Gregorian(const Date & date) : Middle(0,0,0) {
 	MJD_set_date(date.mod_julian_day());
 }
 
-// TODO
 Gregorian::Gregorian(const Date * datep) : Middle(0,0,0) {
 	MJD_set_date(datep->mod_julian_day());
 }
@@ -51,21 +49,20 @@ Gregorian & Gregorian::operator=(const Date & date) {
 	return *this;
 }
 
-// TODO
+
+
 Gregorian Gregorian::operator++(int) {
 	Gregorian g(this);
 	++(*this);
 	return g;
 }
 
-// TODO
 Gregorian Gregorian::operator--(int) {
 	Gregorian g(this);
 	--(*this);
 	return g;
 }
 
-// TODO
 int Gregorian::mod_julian_day() const {
 	int a = (14 - month()) / 12;
   	int y = year() + 4800 - a;
@@ -82,12 +79,10 @@ int Gregorian::mod_julian_day() const {
   	return mjdn;
 }
 
-// TODO
 bool Gregorian::is_leap_year() const {
 	return (year() % 4 == 0) && (year() % 100 != 0 || year() % 400 == 0);
 }
 
-// TODO
 void Gregorian::MJD_set_date(int mjd) {
 	int jdn = mjd + 2400000.5 + 0.5;
 

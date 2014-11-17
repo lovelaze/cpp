@@ -5,12 +5,7 @@
 
 using namespace lab2;
 
-//std::vector<int> Middle::days_month = {31, 28, 31, 30, 31 , 30, 31, 31, 30, 31, 30, 31};
-//std::vector<std::string> Middle::days = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
-//std::vector<std::string> Middle::months = {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
-
-
-Middle::Middle() : Date() {
+Middle::Middle() {
 
 }
 
@@ -19,6 +14,15 @@ Middle::Middle(int mjdn) {
 }
 
 Middle::Middle(int year, int month, int day) : Date(year, month, day, 7, 12) {
+
+}
+
+Middle & Middle::operator=(const Date & date) {
+	return *this;
+}
+
+
+Middle::~Middle() {
 
 }
 
@@ -96,7 +100,6 @@ std::string Middle::month_name() const {
 }
 
 
-// TODO
 Date & Middle::add_year(int n) {
 
 	if (n > 0) {
@@ -114,7 +117,6 @@ Date & Middle::add_year(int n) {
 	return *this;
 }
 
-// TODO
 Date & Middle::add_month(int n) {
 
 	if (n > 0) { // add months
@@ -152,10 +154,6 @@ Date & Middle::add_month(int n) {
 
 bool Middle::is_valid_date() const {
 
-	if (day() < 1 || day() > days_this_month()) return false;
-	if (month() < 1 || month() > 12) return false;
-	return true;
-
-	//return !(day < 1 || day > days_this_month() || month < 1 || month > 12);
+	return !(day() < 1 || day() > days_this_month() || month() < 1 || month() > 12);
 
 }

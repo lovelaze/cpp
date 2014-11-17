@@ -10,6 +10,8 @@ class Gregorian : public Middle {
 protected:
 	virtual bool is_leap_year() const;
 
+	virtual void MJD_set_date(int);
+
 public:
 	Gregorian();
 	Gregorian(int mjdn);
@@ -25,7 +27,7 @@ public:
 	Gregorian operator--(int);
 
 	int mod_julian_day() const;
-	void MJD_set_date(int);
+	
 
 };
 
