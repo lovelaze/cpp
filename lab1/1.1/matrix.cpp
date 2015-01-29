@@ -47,11 +47,6 @@ Matrix::Matrix( const Matrix& rhs) : m_rows(rhs.m_rows), m_cols(rhs.m_cols), m_v
 	}
 }
 
-Matrix::Matrix( const Matrix&& ) {
-	
-}
-
-
 Matrix::Matrix(const std::size_t size) : Matrix(size, size) {
 	for (index i = 0; i < size; ++i) {
 		m_vectors[i][i] = 1;
@@ -81,11 +76,6 @@ Matrix& Matrix::operator= ( const Matrix& rhs) {
 }
 
 /*
-
-Matrix& Matrix::operator= ( const Matrix&& ) {
-
-}
-
 Matrix Matrix::operator+ ( const Matrix& ) const {
 
 }
@@ -94,9 +84,25 @@ Matrix Matrix::operator* ( const Matrix& ) const {
 	
 }
 
-Matrix Matrix::operator* ( int ) const {
-	
+*/
+
+Matrix Matrix::operator* (const int x) const {
+
+	Matrix tmp(*this);
+
+
+	for (size_t i = 0; i < tmp.rows(); ++i) {
+		for (size_t j = 0; j < tmp[i].size(); ++j) {
+			tmp[i][j] *= x;
+		}
+	}
+
+
+	return tmp;
+		
 }
+
+/*
 
 Matrix Matrix::operator-( const Matrix& ) const {
 	
@@ -106,11 +112,29 @@ Matrix Matrix::operator-( ) const {
 	
 }
 
-Matrix& Matrix::transpose( ) {
+
+*/
+Matrix & Matrix::transpose() {
+
+	Vector<matrix_row> tmp(m_cols, matrix_row(m_rows));
+
+	for (size_t i = 0; i < m_rows; ++i) {
+		for (size_t j = 0; j < m_cols; ++j) {
+			tmp[j][i] = (*this)[i][j];
+		}
+	}
+
+	int x = m_rows;
+	m_rows = m_cols;
+	m_cols = x;
+	m_vectors = tmp;	
+
+	return *this;
+
 }
 
 
-*/
+
 
 void Matrix::add_row(matrix_row row) {
 	if (row.size() != m_cols) {
@@ -136,56 +160,8 @@ const Matrix::matrix_row& Matrix::operator[]( const index i ) const {
 std::istream& operator>> ( std::istream& is, Matrix& matrix) {
 	
 	std::string input;
-	std::getline(is, input);
-
-	Matrix::matrix_row temp_row;
-
-	input.erase(0, 1);
-	input.pop_back();
-
-	size_t pos = 0;
-	std::string token;
-
-	while (token != input){
-		token = input.substr(0, input.find_first_of(";"));
-		input = input.substr(input.find_first_of(";") + 1);
-
-
-		stringstream ss(token);
-		int n;
-		while (ss >> n) {
-			temp_row.push_back(n);
-		}
-		matrix.add_row(temp_row);
-		temp_row.clear();
-
-	}
-
-
-
-
-
-	
-	/*
-	input.erase(0, 1);
-	input.erase(input.length()-1, input.length());
-
-	
-
-	for (char & c : input) {
-		if (isdigit(c)) {
-			temp_row.push_back(std::atoi(&c));
-		}
-
-		if (c == ';') {
-			matrix.add_row(temp_row);
-			temp_row.clear();
-		}
-	}
-
-	*/
-	//std::cerr << input << std::endl;
-
+	is >> input;
+	std::cout << "fisk = " << input << std::endl;
 	
 	return is;
 }

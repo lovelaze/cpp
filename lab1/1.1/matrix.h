@@ -2,8 +2,6 @@
 #define MATRIX_H
 #include "../Vector.h"
 
-#define private public
-
 
 //using namespace std;
 
@@ -25,26 +23,23 @@ class Matrix {
     Matrix( ); // default
     Matrix( const std::size_t, const std::size_t ); // size constructor
     Matrix( const Matrix& ); // copy constructor
-    Matrix( const Matrix&& ); // move constructor
     explicit Matrix( const std::size_t ); // 
     ~Matrix( ); // deconstructor
     
     Matrix& operator= ( const Matrix& ); // assignment operator
-    Matrix& operator= ( const Matrix&& ); // move operator
     Matrix operator+ ( const Matrix& ) const;
     Matrix operator* ( const Matrix& ) const;
-    Matrix operator* ( int ) const;
+    Matrix operator* ( const int ) const;
     Matrix operator-( const Matrix& ) const;
     Matrix operator-( ) const;
     
-    Matrix& transpose( ); // transpose function
+    Matrix& transpose(); // transpose function
     
     matrix_row& operator[]( const index i );
     const matrix_row& operator[]( const index i ) const;
     
     std::size_t rows() const;
     std::size_t cols() const;
-
 public:
     void print();
     
