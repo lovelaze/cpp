@@ -14,7 +14,7 @@ int main() {
 	o = m;
 
 
-	Matrix p (5);
+	Matrix p (2);
 
 	std::cout << p << std::endl;
 
@@ -24,19 +24,11 @@ int main() {
 	p.transpose();
 	std::cout << p << std::endl;
 
-
-
-
-
 	Matrix x;
+	"[ 1 2 ; 3 4 ]" >> x;
 
-	cout << x << endl;
-	std::cin >> x;
+	x = x*p;
 	std::cout << x << std::endl;
-
-	cin.get();
-	
-
 
 	return 0;
 } 

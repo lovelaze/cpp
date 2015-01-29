@@ -26,12 +26,13 @@ class Matrix {
     explicit Matrix( const std::size_t ); // 
     ~Matrix( ); // deconstructor
     
-    Matrix& operator= ( const Matrix& ); // assignment operator
-    Matrix operator+ ( const Matrix& ) const;
-    Matrix operator* ( const Matrix& ) const;
-    Matrix operator* ( const int ) const;
-    Matrix operator-( const Matrix& ) const;
-    Matrix operator-( ) const;
+    Matrix& operator= (const Matrix& ); // assignment operator
+    Matrix operator+ (const Matrix& ) const;
+    Matrix operator+ (const int ) const;
+    Matrix operator* (const Matrix& ) const;
+    Matrix operator* (const int ) const;
+    Matrix operator-(const Matrix& ) const;
+    Matrix operator-(const int) const;
     
     Matrix& transpose(); // transpose function
     
@@ -40,10 +41,9 @@ class Matrix {
     
     std::size_t rows() const;
     std::size_t cols() const;
-public:
     void print();
-    
- protected: // ?
+
+    void check_dimensions(const Matrix &) const;
 
  private:
     std::size_t                 m_rows;
@@ -58,4 +58,4 @@ std::istream& operator>> ( std::istream&, Matrix& );
 std::ostream& operator<< ( std::ostream&, Matrix& );
 Matrix operator* ( int, const Matrix& );
 
-#endif // MATRIX_H
+#endif
