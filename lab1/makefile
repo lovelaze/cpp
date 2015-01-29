@@ -2,7 +2,7 @@ cxxpath = /info/DD2387/labs/cxxtest/cxxtestgen.py
 #cxxpath = cxxtestgen
 #CXX = clang++
 CXX = g++
-CXXFLAGS = -std=gnu++11 -Wall -g
+CXXFLAGS = -std=gnu++11 -static-libstdc++ -Wall -g
 
 
 #%.out: %.cpp
