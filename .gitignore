@@ -31,3 +31,5 @@
 
 # temporary files
 *~
+
+!/lab1/1.1/test/*.o
